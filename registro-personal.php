@@ -144,7 +144,7 @@
                 <img src="assets/logo-gymon.jpeg">
             </div>
             <form id="registerForm" method="POST" action="registro-personal.php">
-                <input type="text" name="nome" id="nome" placeholder="Nome:" autofocus>
+                <input type="text" name="nome" id="nome" placeholder="NomeEEEE:" autofocus>
                 <div id="nomeError" style="color: red;"></div>
                 <input type="text" name="email" id="email" placeholder="E-mail:">
                 <div id="emailError" style="color: red;"></div>

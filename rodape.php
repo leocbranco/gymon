@@ -1,14 +1,3 @@
-<!-------------------------------------------------------------------------------
-Oficina Desenvolvimento Web
-PUCPR
-
-RODAPE.PHP
-
-Profa. Cristina V. P. B. Souza
-Março/2021
----------------------------------------------------------------------------------->
-
-<!-- Sobre -->
 
 <div id="id01" class="w3-modal w3-animate-opacity">
     <div class="w3-modal-content">
@@ -29,7 +18,6 @@ Março/2021
 
 
 <script>
-    // Script para abrir e fechar o sidebar
     function w3_open() {
         document.getElementById("mySidebar").style.display = "block";
         document.getElementById("myOverlay").style.display = "block";

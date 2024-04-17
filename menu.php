@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GymON</title>
 <style>
-/* Estilos para o menu */
+
 .menu-top {
     background-color: #ffffff;
     padding: 10px;
@@ -17,7 +17,7 @@
 }
 
 .menu-logo img {
-    width: 100px; /* Ajuste conforme necessário */
+    width: 100px; 
     height: auto;
 }
 
@@ -26,7 +26,7 @@
 }
 
 .menu-bar {
-    background-color: #d63a25; /* Cor de fundo do menu */
+    background-color: #d63a25; 
     color: #ffffff;
     font-size: 18px;
     padding: 12px;
@@ -42,18 +42,18 @@
     padding: 16px;
 }
 
-/* Estilos para a barra lateral */
+
 .sidebar {
     background-color: #f1f1f1; /* Cor de fundo da barra lateral */
     width: 270px;
     position: fixed;
     left: 0;
-    top: 60px; /* Ajuste conforme necessário */
+    top: 60px; 
     height: 100%;
     overflow-x: hidden;
     transition: 0.5s;
     z-index: 1;
-    display: none; /* Inicia fechada por padrão */
+    display: none; 
 }
 
 .sidebar a {
@@ -72,14 +72,12 @@
 
 <body>
 
-<!-- Menu -->
 <div class="menu-top">
     
 <div class="menu-bar">
     <a href="javascript:void(0)" onclick="toggleSidebar()">☰ Menu</a>
 </div>
 
-<!-- Barra lateral -->
 <div class="sidebar" id="sidebar">
     <a href="javascript:void(0)" onclick="toggleSidebar()" class="closebtn" title="Fechar">&times;</a>
     <div class="menu-container">
@@ -90,7 +88,6 @@
     </div>
 </div>
 
-<!-- Script para abrir/fechar a barra lateral -->
 <script>
 function toggleSidebar() {
     var sidebar = document.getElementById('sidebar');

@@ -44,7 +44,7 @@
 
 
 .sidebar {
-    background-color: #f1f1f1; /* Cor de fundo da barra lateral */
+    background-color: #f1f1f1; 
     width: 270px;
     position: fixed;
     left: 0;

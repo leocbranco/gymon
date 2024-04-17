@@ -11,14 +11,12 @@
         $genero = $_POST['genero'];
         $data_nasc = $_POST['data_nasc'];
 
-        // Expressões regulares para validação
         $regex_nome = "/^[a-zA-Z\s]+$/";
         $regex_email = "/^\S+@\S+\.\S+$/";
-        $regex_senha = "/^.{6,}$/"; // Pelo menos 6 caracteres
+        $regex_senha = "/^.{6,}$/"; 
         $regex_cpf = "/^\d{3}\.\d{3}\.\d{3}-\d{2}$/";
-        $regex_genero = "/^(Masculino|Feminino|Outro)$/i"; // Aceita Masculino, Feminino ou Outro (case-insensitive)
+        $regex_genero = "/^(Masculino|Feminino|Outro)$/i"; 
 
-        // Validar dados usando regex
         if(!preg_match($regex_nome, $nome)) {
             echo "Nome inválido. Por favor, insira apenas letras e espaços.";
             exit();
@@ -169,9 +167,9 @@
         function setErrorColor(elementId, isError) {
             var errorElement = document.getElementById(elementId);
             if (isError) {
-                errorElement.style.color = 'red'; // Se houver erro, definir a cor para vermelho
+                errorElement.style.color = 'red';
             } else {
-                errorElement.style.color = 'transparent'; // Se não houver erro, tornar o texto transparente
+                errorElement.style.color = 'transparent'; 
             }
         }
 

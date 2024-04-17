@@ -15,14 +15,14 @@ header {
 main {
     padding: 20px;
     text-align: center;
-    margin-top: 60px; /* Ajuste para evitar que o menu sobreponha o texto */
-    margin-right: 240px; /* Aumente o espaçamento à direita para o menu lateral e a imagem */
-    box-sizing: border-box; /* Evita que a largura do elemento seja afetada pelo padding */
+    margin-top: 60px; 
+    margin-right: 240px; 
+    box-sizing: border-box; 
 }
 
 main h2 {
-    font-size: 1.2em; /* Ajuste o tamanho da fonte conforme necessário */
-    margin-top: 20px; /* Ajuste o espaçamento entre o título e o menu */
+    font-size: 1.2em; 
+    margin-top: 20px;
 }
 
 main img {
@@ -113,7 +113,6 @@ input[type="text"], textarea, input[type="date"], button {
     color: #333;
 }
 
-/* Estilo para o botão "Adicionar" */
 #add-button {
     background-color: #673ab7;
     color: white;
@@ -124,18 +123,16 @@ input[type="text"], textarea, input[type="date"], button {
     background-color: #531e99;
 }
 
-/* Estilos para a linha de divisão entre as notas */
 .note-divider {
     height: 2px;
-    background-color: #673ab7; /* Cor roxa utilizada no site */
+    background-color: #673ab7; 
     margin-top: 10px;
     margin-bottom: 10px;
 }
 
-/* Estilos para a linha de divisão entre o menu e as notas */
 .note-divider {
     height: 2px;
-    background-color: #673ab7; /* Cor roxa utilizada no site */
+    background-color: #673ab7; 
     margin-top: 10px;
     margin-bottom: 10px;
 }

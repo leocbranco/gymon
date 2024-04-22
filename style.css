@@ -1,0 +1,163 @@
+/* Estilos gerais */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f3f3f3;
+}
+
+header {
+    background-color: #673ab7;
+    color: white;
+    padding: 20px;
+    
+}
+
+main {
+    padding: 20px;
+    text-align: center;
+    margin-top: 60px; /* Ajuste para evitar que o menu sobreponha o texto */
+    margin-right: 240px; /* Aumente o espaçamento à direita para o menu lateral e a imagem */
+    box-sizing: border-box; /* Evita que a largura do elemento seja afetada pelo padding */
+}
+
+main h2 {
+    font-size: 1.2em; /* Ajuste o tamanho da fonte conforme necessário */
+    margin-top: 20px; /* Ajuste o espaçamento entre o título e o menu */
+}
+
+main img {
+    margin-right: 20px; /* Adicione margem à direita da imagem conforme necessário */
+}
+
+
+/* Estilos para o menu - Use o mesmo estilo do menu das outras páginas */
+.menu {
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+.menu ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+}
+
+.menu li {
+    display: inline;
+    margin-right: 20px;
+}
+
+.menu a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+}
+
+
+
+/* Outros estilos para o cronômetro (se necessário) */
+
+/* Estilos para o menu vertical */
+.menu-vertical {
+    background-color: #333;
+    color: white;
+    width: 160px; /* Largura do menu vertical */
+    padding: 10px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    overflow-y: auto;
+}
+
+.menu-vertical ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.menu-vertical li {
+    margin-bottom: 10px;
+}
+
+.menu-vertical a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+    display: block;
+    padding: 10px;
+    transition: background-color 0.3s;
+}
+
+.menu-vertical a:hover {
+    background-color: #673ab7;
+}
+
+.content {
+    margin-left: 180px; /* Largura do menu + um espaço extra */
+}
+
+/* Estilos para as caixas de texto */
+input[type="text"], textarea, input[type="date"], button {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    font-size: 16px;
+    color: #333;
+}
+
+/* Estilo para o botão "Adicionar" */
+#add-button {
+    background-color: #673ab7;
+    color: white;
+    cursor: pointer;
+}
+
+#add-button:hover {
+    background-color: #531e99;
+}
+
+/* Estilos para a linha de divisão entre as notas */
+.note-divider {
+    height: 2px;
+    background-color: #673ab7; /* Cor roxa utilizada no site */
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+/* Estilos para a linha de divisão entre o menu e as notas */
+.note-divider {
+    height: 2px;
+    background-color: #673ab7; /* Cor roxa utilizada no site */
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+footer {
+    background-color: #673ab7;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+.footer-content {
+    max-width: 960px;
+    margin: 0 auto;
+}
+
+
+
+
+

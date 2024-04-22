@@ -198,7 +198,7 @@ if(isset($_POST['register']))
             <div class="gender-container">
                 <select name="genero" id="genero" class="register-input" required>
                     <option value="" disabled selected hidden>Gênero</option>
-                    <option value="masculino">Masculino</option>
+                    <option value="masculino">MasculinoIJAWNDIJANDIA</option>
                     <option value="feminino">Feminino</option>
                     <option value="outro">Outro</option>
                 </select>

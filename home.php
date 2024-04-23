@@ -240,8 +240,8 @@
 
 
         .home-btn:hover {
-            background: var(--dark);
-            border-color: var(--dark);
+            background: var(--white);
+            border-color: var(--white);
         }
 
         .home-btn:active {
@@ -263,11 +263,6 @@
                 <li class="nav-item"><a href="#">Planos</a></li>
                 <box-icon name='search'></box-icon>
             </ul>
-            <div class="menu">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </div>
         </nav>
     </header>
     <main>
@@ -279,7 +274,7 @@
                 <h4 class="text-h4">Treinos personalizados, resultados garantidos</h4>
                 <h1 class="text-h1">Seja Bem-vindo ao GymON!</h1>
                 <p>Um site online que oferece personalização de treinos e acompanhamento de progresso para personal trainers e seus clientes, facilitando a comunicação, a criação de rotinas e o monitoramento de resultados de forma eficiente e segura.</p>
-                <a class="home-btn" href="registrar.php">Comece ja</a>
+                <a class="home-btn" href="registrar.php">Registre-se</a>
                 <a class="home-btn" href="logar.php">Entrar</a>
             </div>
         </section>

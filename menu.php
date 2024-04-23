@@ -4,107 +4,90 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GymON</title>
-    <link rel="icon" href="assets/logo-gymon.jpeg" type="image/x-icon">''
-<style>
-.menu-top {
-    background-color: #ffffff;
-    padding: 10px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
+    <link rel="icon" href="assets/logo-gymon.jpeg" type="image/x-icon">
+    <style>
 
-.menu-logo {
-    margin: 4px 0 6px 0;
-}
+        .menu-top {
+            background-color: #800000; 
+            padding: 10px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 2;
+        }
 
-.menu-logo img {
-    width: 100px; 
-    height: auto;
-}
+        .menu-bar {
+            color: #ffffff;
+            font-size: 18px;
+            padding: 12px;
+        }
 
-.menu-instituicao {
-    font-weight: bold;
-}
+        .menu-bar a {
+            text-decoration: none;
+            color: #ffffff;
+            padding: 16px;
+        }
 
-.menu-bar {
-    background-color: #d63a25; 
-    color: #ffffff;
-    font-size: 18px;
-    padding: 12px;
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 2;
-}
+        .sidebar {
+            background-color: #3e3e3e; 
+            width: 270px;
+            position: fixed;
+            left: -270px; 
+            top: 60px;
+            height: 100%;
+            overflow-x: hidden;
+            transition: left 0.5s; a
+            z-index: 1;
+        }
 
-.menu-bar a {
-    text-decoration: none;
-    color: #ffffff;
-    padding: 16px;
-}
+        .sidebar a {
+            padding: 10px;
+            text-decoration: none;
+            font-size: 18px;
+            color: #ffffff;
+            display: block;
+        }
 
-.sidebar {
-    background-color: #f1f1f1; 
-    width: 270px;
-    position: fixed;
-    left: 0;
-    top: 60px; 
-    height: 100%;
-    overflow-x: hidden;
-    transition: 0.5s;
-    z-index: 1;
-    display: none; 
-}
-
-.sidebar a {
-    padding: 10px;
-    text-decoration: none;
-    font-size: 18px;
-    color: #000000;
-    display: block;
-}
-
-.sidebar a:hover {
-    background-color: #ddd;
-}
-</style>
+        .sidebar a:hover {
+            background-color: #800000;
+        }
+    </style>
 </head>
 
 <body>
 
-
 <div class="menu-top">
-    
-<div class="menu-bar">
-    <a href="javascript:void(0)" onclick="toggleSidebar()">☰ Menu</a>
+    <div class="menu-bar">
+        <a href="javascript:void(0)" onclick="toggleSidebar()">☰ Menu</a>
+    </div>
 </div>
 
-
 <div class="sidebar" id="sidebar">
-    <a href="javascript:void(0)" onclick="toggleSidebar()" class="closebtn" title="Fechar">&times;</a>
     <div class="menu-container">
+        <br>
         <a href="ExercicioCriar.php">Adicionar Exercicio</a>
         <a href="ExercicioListar.php">Lista de Exercicios</a>
-        <a href="crud-personal.php">Visualizar Perfil</a> 
+        <a href="crud-personal.php">Visualizar Perfil</a>
         <a href="#" onclick="confirmLogout()">Sair</a>
     </div>
 </div>
 
-
 <script>
-function toggleSidebar() {
-    var sidebar = document.getElementById('sidebar');
-    if (sidebar.style.display === "block") {
-        sidebar.style.display = "none";
-    } else {
-        sidebar.style.display = "block";
+    function toggleSidebar() {
+        var sidebar = document.getElementById('sidebar');
+        if (sidebar.style.left === "0px") {
+            sidebar.style.left = "-270px";
+        } else {
+            sidebar.style.left = "0px";
+        }
     }
-}
 
-function confirmLogout() {
-    if(confirm("Tem certeza de que deseja sair da sua conta?")) {
-        window.location.href = "logout.php";
+    function confirmLogout() {
+        if(confirm("Tem certeza de que deseja sair da sua conta?")) {
+            window.location.href = "logout.php";
+        }
     }
-}
 </script>
 
 </body>

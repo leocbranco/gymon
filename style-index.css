@@ -8,10 +8,10 @@
 }
 
 :root{
-    --red:#d63a25;
-    --white:#fff;
-    --dark: #1e1c2a;
-}
+    --red:#800000;
+    --white:#1C1C1C;
+    --dark: #fff;
+}   
 
 body{
     color: var(--dark);

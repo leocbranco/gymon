@@ -98,21 +98,21 @@
     </header>
     <div class="container">
         <div class="table">
-            <h2>Login como Personal</h2>
-            <div class="description">
-                <p>Se você é um profissional de saúde ou fitness, acesse como Personal e comece a ajudar seus clientes a atingirem seus objetivos.</p>
-            </div>
-            <div class="form-group">
-                <button onclick="window.location.href='login-personal.php'">Acessar como Personal</button>
-            </div>
-        </div>
-        <div class="table">
             <h2>Login como Aluno</h2>
             <div class="description">
                 <p>Se você está em busca de um treinador pessoal para te ajudar a alcançar seus objetivos de fitness, acesse como Aluno.</p>
             </div>
             <div class="form-group">
                 <button onclick="window.location.href='login-aluno.php'">Acessar como Aluno</button>
+            </div>
+        </div>
+        <div class="table">
+            <h2>Login como Personal</h2>
+            <div class="description">
+                <p>Se você é um profissional de saúde ou fitness, acesse como Personal e comece a ajudar seus clientes a atingirem seus objetivos.</p>
+            </div>
+            <div class="form-group">
+                <button onclick="window.location.href='login-personal.php'">Acessar como Personal</button>
             </div>
         </div>
     </div>

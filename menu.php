@@ -37,7 +37,7 @@
             top: 60px;
             height: 100%;
             overflow-x: hidden;
-            transition: left 0.5s; a
+            transition: left 0.5s; 
             z-index: 1;
         }
 

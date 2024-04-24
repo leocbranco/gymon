@@ -2,99 +2,161 @@
 <html>
 
 <head>
-
     <title>GymON</title>
     <link rel="icon" type="image/png" href="imagens/IE_favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <link rel="icon" href="assets/logo-gymon.jpeg" type="image/x-icon">
     <style>
-        .w3-theme {
-            color: #ffff !important;
-            background-color: #380077 !important
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #1C1C1C;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
         }
 
-        .w3-code {
-            border-left: 4px solid #380077
+        .container {
+            width: 80%;
+            padding: 20px;
+            background-color: transparent;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            display: flex;
+            justify-content: space-between;
         }
 
-        .myMenu {
-            margin-bottom: 150px
+        .form-container {
+            flex: 1;
+            padding: 0 10px;
         }
 
-        #Imagem {
-            display: none
+        .form-group {
+            margin-bottom: 10px;
         }
 
-        #imagemSelecionada {
-            width: 20%;
+        label {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            background-color: transparent;
+            color: #fff;
+            margin-bottom: 10px;
+        }
+
+        .btn {
+            background-color: #800000;
+            color: #fff;
+            padding: 8px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            margin-right: 10px;
+        }
+
+        .btn:hover {
+            background-color: #550000;
+        }
+
+        .btn-cancel {
+            background-color: #333;
+        }
+
+        .img-preview-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 30px;
+        }
+
+        .img-preview {
+            max-width: 150px;
             height: auto;
+            margin-bottom: 10px;
+        }
+
+        input[type="file"] {
+            display: none;
+        }
+
+        .btn-file {
+            background-color: #800000;
+            color: #fff;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+
+        .btn-file:hover {
+            background-color: #550000;
+        }
+
+        .btn-container {
+            margin-top: 10px;
+            display: flex;
+            justify-content: flex-start;
         }
     </style>
 </head>
 
-<body onload="w3_show_nav('menuDisc')">
+<body>
     <?php require 'menu.php'; ?>
     <?php require 'cfg.php'; ?>
-
-    <div class="w3-main w3-container" style="margin-left:270px;margin-top:117px;">
-
-        <div class="w3-panel w3-padding-large w3-card-4 w3-light-grey">
-            <h1 class="w3-xxlarge">Cadastro de Exercícios</h1>
-
-            <p class="w3-large">
-            <div class="w3-code cssHigh notranslate">
-                <?php
-
-                date_default_timezone_set("America/Sao_Paulo");
-                $data = date("d/m/Y H:i:s", time());
-                echo "<p class='w3-small' > ";
-                echo "Acesso em: ";
-                echo $data;
-                echo "</p> "
-                ?>
-
-                <div class="w3-responsive w3-card-4">
-                    <div class="w3-container w3-theme">
-                        <h2>Informe os dados do novo Exercicio</h2>
-                    </div>
-                    <form class="w3-container" action="ExercicioCriar_exe.php" method="post" onsubmit="return check(this.form)" enctype="multipart/form-data">
-                        <table class='w3-table-all'>
-                            <tr>
-                                <td style="width:50%;">
-                                    <p>
-                                        <label class="w3-text-deep-purple"><b>Nome</b></label>
-                                        <input class="w3-input w3-border w3-light-grey" name="Nome" type="text" pattern="[a-zA-Z\u00C0-\u00FF ]{10,100}$" title="Nome da disciplina entre 10 e 100 letras." required>
-                                    </p>
-                                    <p>
-                                        <label class="w3-text-deep-purple"><b>Descrição</b></label>
-                                        <textarea class="w3-input w3-border w3-light-grey " name="Ementa" rows="5" title="Texto Descritivo" required></textarea>
-                                    </p>
-                                </td>
-                                <td style="text-align:center">
-                                    <p>
-                                        <label class="w3-text-deep-purple"><b>ImagemSelecionada: </b></label>
-                                        <p><img id="imagemSelecionada" src="assets/imagem.png" /></p>
-                                    </p>
-                                    <p>
-                                        <label class="w3-btn w3-theme"><b>Selecione uma imagem</b>
-                                        <input type="hidden" name="MAX_FILE_SIZE" value="16777215" />
-                                        <input type="file" id="Imagem" name="Imagem" accept="imagem/*" onchange="validaImagem(this);"></label>
-                                    </p>
-                                </td>
-                            <tr>
-                                <td colspan="2">
-                                    <input type="submit" value="Registrar" class="w3-btn w3-theme">
-                                    <input type="button" value="Cancelar" class="w3-btn w3-theme" onclick="window.location.href='.'">
-                                </td>
-                            </tr>
-                        </table>
-                    </form>
+    <div class="container">
+        <div class="form-container">
+            <h2>Cadastro de Exercícios</h2>
+            <form action="ExercicioCriar_exe.php" method="post" onsubmit="return check(this.form)" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="nome">Nome:</label>
+                    <input id="nome" name="Nome" type="text" pattern="[a-zA-Z\u00C0-\u00FF ]{10,100}$" title="Nome da disciplina entre 10 e 100 letras." required>
                 </div>
-
-            </div>
-            </p>
+                <div class="form-group">
+                    <label for="descricao">Descrição:</label>
+                    <textarea id="descricao" name="Ementa" rows="3" title="Texto Descritivo" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="imagem">Imagem Selecionada:</label>
+                    <br>
+                    <img class="img-preview" id="imagemSelecionada" src="assets/imagem.png" alt="Imagem Selecionada">
+                    <br>
+                    <label class="btn-file" for="Imagem">Selecionar Imagem</label>
+                    <input type="file" id="Imagem" name="Imagem" accept="image/*" style="display: none;" onchange="previewImage(event)">
+                </div>
+                <div class="btn-container">
+                    <input type="submit" class="btn" value="Registrar">
+                    <input type="button" class="btn btn-cancel" value="Cancelar" onclick="window.location.href='home-personal.php'">
+                </div>
+            </form>
         </div>
+    </div>
+
+    <script>
+        function previewImage(event) {
+            var reader = new FileReader();
+            reader.onload = function() {
+                var imgPreview = document.getElementById('imagemSelecionada');
+                imgPreview.src = reader.result;
+            }
+            reader.readAsDataURL(event.target.files[0]);
+        }
+    </script>
 </body>
 
 </html>

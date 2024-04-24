@@ -105,7 +105,7 @@
                 echo "<tr>";
                 echo "<th width='7%'>Código</th>";
                 echo "<th width='10%'>Nome</th>";
-                echo "<th>Ementa</th>";
+                echo "<th>Descrição</th>";
                 echo "<th width='20%'>Imagem</th>";
                 echo "<th></th>";
                 echo "<th></th>";

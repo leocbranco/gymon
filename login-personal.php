@@ -134,7 +134,7 @@
             <br>
             <button type="submit" name="login" value="entrar" class="register-button">Entrar</button>
         </form>
-        <p>Ainda não possui uma conta? <a href="registro-personal.php" class="login-link">Sign in</a></p>
+        <p>Ainda não possui uma conta? <a href="registro-personal.php" class="login-link">Sign up</a></p>
     </div>
 </div>
 </body>

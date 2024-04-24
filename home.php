@@ -271,7 +271,7 @@
                 <img src="assets/personal.png" alt="Atleta amarrando o tenis">
             </div>
             <div class="home-texts">
-                <h4 class="text-h4">Treinos personalizados, resultados garantidos</h4>
+                <h4 class="text-h4">Treinos personalizados visando o desenvolvimento corporal.</h4>
                 <h1 class="text-h1">Seja Bem-vindo ao GymON!</h1>
                 <p>Um site online que oferece personalização de treinos e acompanhamento de progresso para personal trainers e seus clientes, facilitando a comunicação, a criação de rotinas e o monitoramento de resultados de forma eficiente e segura.</p>
                 <a class="home-btn" href="registrar.php">Registre-se</a>

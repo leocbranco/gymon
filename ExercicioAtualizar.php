@@ -147,6 +147,7 @@
             $sql = "SELECT ID_Exercicio, Nome_Exercicio, Descricao_Exercicio, FotoBin FROM Exercicios WHERE ID_Exercicio = $id";
 
 
+<<<<<<< HEAD
             echo "<div>";
             if ($result = mysqli_query($conn, $sql)) {
                 if (mysqli_num_rows($result) > 0) {
@@ -209,6 +210,75 @@
             ?>
         </div>
     </div>
+=======
+				echo "<div class='w3-responsive w3-card-4'>";
+				if ($result = mysqli_query($conn, $sql)) {
+					if (mysqli_num_rows($result) > 0) {
+						while ($row = mysqli_fetch_assoc($result)) {
+				?>
+							<div class="w3-container w3-theme">
+								<h2>Altere os dados da Disciplina Cód. = [<?php echo $row['ID_Exercicio']; ?>]</h2>
+							</div>
+							<form class="w3-container" action="ExercicioAtualizar_exe.php" method="post" onsubmit="return check(this.form)" enctype="multipart/form-data">
+								<table class='w3-table-all'>
+									<tr>
+										<td style="width:50%;">
+											<input type="hidden" id="Id" name="Id" value="<?php echo $row['ID_Exercicio']; ?>">
+											<p>
+												<label class="w3-text-deep-purple"><b>Nome</b></label>
+												<input class="w3-input w3-border w3-light-grey" name="Nome" type="text" pattern="[a-zA-Z\u00C0-\u00FF ]{10,100}$" title="Nome da disciplina entre 10 e 100 letras." value="<?php echo $row['Nome_Exercicio']; ?>" required>
+											</p>
+											<p>
+												<label class="w3-text-deep-purple"><b>Ementa</b></label>
+												<textarea class="w3-input w3-border w3-light-grey " name="Ementa" rows="5" title="Texto Descritivo" required><?php echo $row['Descricao_Exercicio']; ?></textarea>
+											</p>
+										</td>
+										<td style="text-align:center">
+											<p>
+												<label class="w3-text-deep-purple"><b>Imagem</b></label>
+												<?php
+												if ($row['FotoBin']) {
+												?>
+											<p><img id="imagemSelecionada" src="data:image/png;base64,<?= base64_encode($row['FotoBin']) ?>" /></p>
+										<?php
+												} else {
+										?>
+											<p><img id="imagemSelecionada" src="imagens/imagem.png" /></p>
+										<?php
+												}
+										?>
+										<p>
+											<label class="w3-btn w3-theme"><b>Selecione uma imagem</b>
+												<input type="hidden" name="MAX_FILE_SIZE" value="16777215" />
+												<input type="file" id="Imagem" name="Imagem" accept="imagem/*" onchange="validaImagem(this);"></label>
+										</p>
+										</td>
+									</tr>
+									<tr>
+										<td colspan="2">
+											<p>
+												<input type="submit" value="Alterar" class="w3-btn w3-red">
+												<input type="button" value="Cancelar" class="w3-btn w3-theme" onclick="window.location.href='ExercicioListar.php'">
+											</p>
+										</td>
+									</tr>
+								</table>
+							</form>
+				<?php
+						}
+					}
+				} else {
+					echo "Erro executando UPDATE: " . mysqli_error($conn);
+				}
+				echo "</div>"; 
+				mysqli_close($conn); 
+
+				?>
+
+			</div>
+			</p>
+		</div>
+>>>>>>> 5b081a2b00e026c1d64d0aedff7679df3b6b55e4
 </body>
 
 </html>

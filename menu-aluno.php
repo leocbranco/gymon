@@ -66,7 +66,7 @@
 <div class="sidebar" id="sidebar">
     <div class="menu-container">
         <br>
-        <a href="crud-personal.php">Visualizar Perfil</a>
+        <a href="crud-aluno.php">Visualizar Perfil</a>
         <a href="#" onclick="confirmLogout()">Sair</a>
     </div>
 </div>

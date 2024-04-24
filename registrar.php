@@ -117,7 +117,6 @@
                 <p>Se você está em busca de um treinador pessoal para te ajudar a alcançar seus objetivos de fitness, registre-se como Aluno e encontre o personal perfeito para você.</p>
             </div>
             <div class="topics">
-                <h3>Tópicos:</h3>
                 <ul>
                     <li>➜ Encontre o personal ideal para suas necessidades</li>
                     <br>
@@ -142,7 +141,6 @@
                 <p>Se você é um profissional de saúde ou fitness, registre-se como Personal e comece a ajudar seus clientes a atingirem seus objetivos.</p>
             </div>
             <div class="topics">
-                <h3>Tópicos:</h3>
                 <ul>
                     <li>➜ Crie perfis personalizados para seus clientes</li>
                     <br>

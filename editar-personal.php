@@ -24,13 +24,13 @@
         else
         {
             header('Location: crud-personal.php');
-            exit(); // Adicionado para evitar que o código continue sendo executado após a redireção
+            exit(); 
         }
     }
     else
     {
         header('Location: crud-personal.php');
-        exit(); // Adicionado para evitar que o código continue sendo executado após a redireção
+        exit(); 
     }
 ?>
 <!DOCTYPE html>

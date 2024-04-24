@@ -114,7 +114,7 @@
 <body>
     <a class="btn-back" href="home-personal.php">Voltar</a>
     <div class="container">
-        <h2>Dados do Personal</h2>
+        <h2>Dados Pessoais</h2>
         <table class="table">
             <thead>
                 <tr>

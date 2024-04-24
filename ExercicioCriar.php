@@ -125,7 +125,7 @@
             <form action="ExercicioCriar_exe.php" method="post" onsubmit="return check(this.form)" enctype="multipart/form-data">
                 <div class="form-group">
                     <label for="nome">Nome:</label>
-                    <input id="nome" name="Nome" type="text" pattern="[a-zA-Z\u00C0-\u00FF ]{10,100}$" title="Nome da disciplina entre 10 e 100 letras." required>
+                    <input id="nome" name="Nome" type="text"  title="Nome do exercicio" required>
                 </div>
                 <div class="form-group">
                     <label for="descricao">Descrição:</label>

@@ -9,18 +9,10 @@
 	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="icon" href="assets/logo-gymon.jpeg" type="image/x-icon">
 	<style>
-		.w3-theme {
-			color: #ffff !important;
-			background-color: #380077 !important
+		body {
+			background: #1C1C1C;
 		}
 
-		.w3-code {
-			border-left: 4px solid #380077
-		}
-
-		.myMenu {
-			margin-bottom: 150px
-		}
 	</style>
 </head>
 
@@ -30,8 +22,8 @@
 
 	<div class="w3-main w3-container" style="margin-left:270px;margin-top:117px;">
 
-		<div class="w3-panel w3-padding-large w3-card-4 w3-light-grey">
-			<h1 class="w3-xxlarge">Registro de Exercícios</h1>
+		<div class="w3-panel w3-padding-large w3-card-4 w3-grey">
+			<h1 class="">Registro de Exercícios</h1>
 
 			<p class="w3-large">
 			<div class="w3-code cssHigh notranslate">
@@ -83,7 +75,7 @@
 				mysqli_query($conn, 'SET character_set_client=utf8');
 				mysqli_query($conn, 'SET character_set_results=utf8');
 
-				echo "<div class='w3-responsive w3-card-4'>";
+				echo "<div class='teste'>";
 				if ($result = mysqli_query($conn, $sql)) {
 					echo "Um registro adicionado!";
 				} else {

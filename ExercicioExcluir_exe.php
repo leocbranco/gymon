@@ -8,8 +8,14 @@
     <link rel="icon" href="assets/logo-gymon.jpeg" type="image/x-icon">
 	<style>
 		.w3-theme {color:#ffff !important;background-color:#380077 !important}
+		
 		.w3-code{border-left:4px solid #380077}
+
 		.myMenu {margin-bottom:150px}
+
+		body {
+			background: #1C1C1C;
+		}
     </style>
 </head>
 <body onload="w3_show_nav('menuDisc')">

@@ -21,7 +21,12 @@
 		.myMenu {
 			margin-bottom: 150px
 		}
+		
+		body {
+			background: #1C1C1C;
+		}
 	</style>
+	
 </head>
 
 <body onload="w3_show_nav('menuDisc')">

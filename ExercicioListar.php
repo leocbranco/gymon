@@ -23,9 +23,9 @@
             border-radius: 10px;
             background-color: #2d2d2d;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            width: 80%; /* Ajuste a largura conforme necessário */
-            max-height: 70vh; /* Defina a altura máxima */
-            overflow-y: auto; /* Adicione rolagem vertical quando necessário */
+            width: 80%; 
+            max-height: 70vh; 
+            overflow-y: auto; 
         }
 
         h1 {
@@ -64,8 +64,8 @@
 
         .exercise-table td a img {
             vertical-align: middle;
-            width: 40px; /* Altere o tamanho do ícone aqui */
-            height: 40px; /* Altere o tamanho do ícone aqui */
+            width: 40px; 
+            height: 40px; 
         }
 
         .responsive-table {

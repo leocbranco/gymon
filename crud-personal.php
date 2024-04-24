@@ -92,7 +92,6 @@
             background-color: #b5202b;
         }
 
-        /* Botão de volta estilizado */
         .btn-back {
             position: absolute;
             top: 20px;

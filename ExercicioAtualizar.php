@@ -158,7 +158,7 @@
                                         <input type="hidden" name="Id" value="<?php echo $row['ID_Exercicio']; ?>">
                                         <p>
                                             <label><b>Nome</b></label>
-                                            <input name="Nome" type="text" pattern="[a-zA-Z\u00C0-\u00FF ]{10,100}$" title="Nome da disciplina entre 10 e 100 letras." value="<?php echo $row['Nome_Exercicio']; ?>" required>
+                                            <input name="Nome" type="text"  title="Nome exercicio." value="<?php echo $row['Nome_Exercicio']; ?>" required>
                                         </p>
                                         <p>
                                             <label><b>Ementa</b></label>

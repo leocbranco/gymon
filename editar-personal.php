@@ -60,8 +60,8 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            background-color: #1B1F27; /* Alterado para a cor de fundo do body */
-            border: 2px solid #C0C0C0; /* Adicionada uma borda cinza */
+            background-color: #1B1F27; 
+            border: 2px solid #C0C0C0; 
             border-radius: 10px;
             width: 355px;
             height: 520px;
@@ -76,14 +76,14 @@
 
         .login input{
             margin-top: 10px;
-            background-color: transparent; /* Alterado para transparente */
+            background-color: transparent;
             padding-left: 10px;
             color: #CBD0F7;
-            border: 1px solid #C0C0C0; /* Adicionada uma borda cinza */
+            border: 1px solid #C0C0C0; 
             height: 45px;
             outline: none; 
             border-radius: 8px;
-            width: 100%; /* Adicionado para ocupar toda a largura */
+            width: 100%; 
         }
 
         .login img{
@@ -114,14 +114,14 @@
             color:#CBD0F7;
             text-decoration: none;
             margin-left: 10px;
-            margin-top: 10px; /* Adicionado para espaçamento */
+            margin-top: 10px; 
         }
 
         a{
             color: #CBD0F7;
             text-decoration: none;
             margin-left: 10px;
-            margin-top: 10px; /* Adicionado para espaçamento */
+            margin-top: 10px; 
         }
     </style>
 </head>

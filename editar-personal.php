@@ -138,7 +138,6 @@
                 <input type="password" name="senha" value="<?php echo $senha?>" placeholder="Senha:">
                 <input type="text" name="cpf" value="<?php echo $CPF?>" placeholder="CPF:" readonly>
                 <input type="text" name="genero" value="<?php echo $genero?>" placeholder="Gênero:">
-                <p>Data de Nascimento:</p>
                 <input type="date" name="data_nasc" value="<?php echo $data_nasc?>" placeholder="Data de Nascimento:">
                 <input href="crud-personal.php" type="submit" name="update" value="Salvar">
                 <input type="hidden" name="ID_Personal" id="update" value='<?php echo $id ?>'>

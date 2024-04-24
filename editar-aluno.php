@@ -57,7 +57,8 @@ if(!empty($_GET['ID_Aluno']))
             display: flex;
             flex-direction: column;
             align-items: center;
-            background-color: #9370DB;
+            background-color: #1B1F27; /* Alterado para a cor de fundo do body */
+            border: 2px solid #C0C0C0; /* Adicionada uma borda cinza */
             border-radius: 10px;
             width: 355px;
             height: 520px;
@@ -72,17 +73,18 @@ if(!empty($_GET['ID_Aluno']))
 
         .login input{
             margin-top: 10px;
-            background-color: #252A34;
+            background-color: transparent; /* Alterado para transparente */
             padding-left: 10px;
             color: #CBD0F7;
-            border: none;
+            border: 1px solid #C0C0C0; /* Adicionada uma borda cinza */
             height: 45px;
             outline: none; 
             border-radius: 8px;
+            width: 100%; /* Adicionado para ocupar toda a largura */
         }
 
         .login img{
-            width: 100px;
+            width: 50px;
             height: auto;
         }
 
@@ -98,12 +100,25 @@ if(!empty($_GET['ID_Aluno']))
             text-transform: uppercase;
             font-weight: bold;
             cursor: pointer;
+            border: none;
+            color: white;
+            height: 45px;
+            border-radius: 8px;
+            margin-top: 10px;
         }
 
         p{
             color:#CBD0F7;
             text-decoration: none;
             margin-left: 10px;
+            margin-top: 10px; /* Adicionado para espaçamento */
+        }
+
+        a{
+            color: #CBD0F7;
+            text-decoration: none;
+            margin-left: 10px;
+            margin-top: 10px; /* Adicionado para espaçamento */
         }
     </style>
 </head>
@@ -112,15 +127,14 @@ if(!empty($_GET['ID_Aluno']))
     <section class="area-login">
         <div class="login">
             <div>
-                <img src="logo.png">
+                <img src="assets/logo-gymon.jpeg">
             </div>
             <form method="POST" action="atualizar-aluno.php">
                 <input type="text" name="nome" value="<?php echo $nome?>" placeholder="Nome:" autofocus>
-                <input type="text" name="email" value="<?php echo $email?>" placeholder="E-mail:">
+                <input type="text" name="email" value="<?php echo $email?>" placeholder="E-mail:" readonly>
                 <input type="password" name="senha" value="<?php echo $senha?>" placeholder="Senha:">
-                <input type="text" name="cpf" value="<?php echo $CPF?>" placeholder="CPF:">
+                <input type="text" name="cpf" value="<?php echo $CPF?>" placeholder="CPF:" readonly>
                 <input type="text" name="genero" value="<?php echo $genero?>" placeholder="Gênero:">
-                <p>Data de Nascimento:</p>
                 <input type="date" name="data_nasc" value="<?php echo $data_nasc?>" placeholder="Data de Nascimento:">
                 <input href="crud-aluno.php" type="submit" name="update" value="Salvar">
                 <input type="hidden" name="ID_Aluno" id="update" value='<?php echo $id ?>'>

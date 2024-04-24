@@ -74,7 +74,7 @@
 									<label class="w3-text-deep-purple"><b>Ementa: </b><?php echo $row['Descricao_Exercicio']; ?></label></p>
 									<p>
 									<input type="submit" value="Confirma exclusão?" class="w3-btn w3-red" >
-									<input type="button" value="Cancelar" class="w3-btn w3-theme" onclick="window.location.href='discListar.php'"></p>
+									<input type="button" value="Cancelar" class="w3-btn w3-theme" onclick="window.location.href='ExercicioListar.php'"></p>
 								</form>
 			<?php 
 							}

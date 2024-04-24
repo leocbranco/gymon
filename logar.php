@@ -85,6 +85,23 @@
             font-size: 1.7rem;
             font-weight: 600;
         }
+
+        .back-button {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: #800000;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .back-button:hover {
+            background-color: #5a0000;
+        }
     </style>
 </head>
 <body>
@@ -116,6 +133,7 @@
             </div>
         </div>
     </div>
-    <script src="script.js"></script>
+    <!-- Botão de voltar -->
+    <a href="home.php" class="back-button">Voltar</a>
 </body>
 </html>

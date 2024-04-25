@@ -161,7 +161,7 @@
                                             <input name="Nome" type="text"  title="Nome exercicio." value="<?php echo $row['Nome_Exercicio']; ?>" required>
                                         </p>
                                         <p>
-                                            <label><b>Ementa</b></label>
+                                            <label><b>Descrição</b></label>
                                             <textarea name="Ementa" rows="8" title="Texto Descritivo" required><?php echo $row['Descricao_Exercicio']; ?></textarea>
                                         </p>
                                     </td>

@@ -20,6 +20,9 @@
         .myMenu {
             margin-bottom: 150px
         }
+		body {
+			background: #1C1C1C;
+		}
     </style>
 </head>
 <body onload="w3_show_nav('menuDisc')">
@@ -29,7 +32,7 @@
 	<div class="w3-main w3-container" style="margin-left:270px;margin-top:117px;">
 
     	<div class="w3-panel w3-padding-large w3-card-4 w3-light-grey">
-        	<h1 class="w3-xxlarge">Exclusão de Disciplina</h1>
+        	<h1 class="w3-xxlarge">Exclusão de Exercicio</h1>
 
         	<p class="w3-large">
             	<div class="w3-code cssHigh notranslate">
@@ -63,15 +66,13 @@
 						if (mysqli_num_rows($result) > 0) {
 							while ($row = mysqli_fetch_assoc($result)) {
 				?>
-								<div class="w3-container w3-theme">
-									<h2>Exclusão do Disciplina Cód. = [<?php echo $row['ID_Exercicio']; ?>]</h2>
-								</div>
+
 								<form class="w3-container" action="ExercicioExcluir_exe.php" method="post" onsubmit="return check(this.form)">
 									<input type="hidden" id="Id" name="Id" value="<?php echo $row['ID_Exercicio']; ?>">
 									<p>
 									<label class="w3-text-deep-purple"><b>Nome: </b> <?php echo $row['Nome_Exercicio']; ?> </label></p>
 									<p>
-									<label class="w3-text-deep-purple"><b>Ementa: </b><?php echo $row['Descricao_Exercicio']; ?></label></p>
+									<label class="w3-text-deep-purple"><b>Descricao: </b><?php echo $row['Descricao_Exercicio']; ?></label></p>
 									<p>
 									<input type="submit" value="Confirma exclusão?" class="w3-btn w3-red" >
 									<input type="button" value="Cancelar" class="w3-btn w3-theme" onclick="window.location.href='ExercicioListar.php'"></p>

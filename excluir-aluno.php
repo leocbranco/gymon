@@ -7,7 +7,7 @@
     $resultDelete = $conex->query($sqlDelete);
 
     if ($resultDelete) {
-        header('Location: crud-aluno.php');
+        header('Location: home.php');
         exit; 
     } else {
         echo "Erro ao excluir usuário.";

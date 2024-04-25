@@ -20,13 +20,9 @@
         .myMenu {
             margin-bottom: 150px
         }
-<<<<<<< HEAD
 		body {
 			background: #1C1C1C;
 		}
-=======
-		
->>>>>>> db7f578fc8f8168b247ef0e864b4b04a9c31557f
     </style>
 </head>
 <body onload="w3_show_nav('menuDisc')">
@@ -36,11 +32,7 @@
 	<div class="w3-main w3-container" style="margin-left:270px;margin-top:117px;">
 
     	<div class="w3-panel w3-padding-large w3-card-4 w3-light-grey">
-<<<<<<< HEAD
         	<h1 class="w3-xxlarge">Exclusão de Exercicio</h1>
-=======
-        	<h1 class="w3-xxlarge">Exclusão de Exercício</h1>
->>>>>>> db7f578fc8f8168b247ef0e864b4b04a9c31557f
 
         	<p class="w3-large">
             	<div class="w3-code cssHigh notranslate">
@@ -74,13 +66,6 @@
 						if (mysqli_num_rows($result) > 0) {
 							while ($row = mysqli_fetch_assoc($result)) {
 				?>
-<<<<<<< HEAD
-
-=======
-								<div class="w3-container w3-theme">
-									<h2>Exclusão de Exercício ID = [<?php echo $row['ID_Exercicio']; ?>]</h2>
-								</div>
->>>>>>> db7f578fc8f8168b247ef0e864b4b04a9c31557f
 								<form class="w3-container" action="ExercicioExcluir_exe.php" method="post" onsubmit="return check(this.form)">
 									<input type="hidden" id="Id" name="Id" value="<?php echo $row['ID_Exercicio']; ?>">
 									<p>
@@ -92,7 +77,7 @@
 									<input type="button" value="Cancelar" class="w3-btn w3-theme" onclick="window.location.href='ExercicioListar.php'"></p>
 								</form>
 			<?php 
-							}
+							} 
 						}
 				}
 				else {

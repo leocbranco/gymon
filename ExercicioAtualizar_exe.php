@@ -37,11 +37,7 @@
 	<div class="w3-main w3-container" style="margin-left:270px;margin-top:117px;">
 
 		<div class="w3-panel w3-padding-large w3-card-4 w3-light-grey">
-<<<<<<< HEAD
 			<h1 class="w3-xxlarge">Atualização de Exercicio</h1>
-=======
-			<h1 class="w3-xxlarge">Atualização de Exercícios</h1>
->>>>>>> db7f578fc8f8168b247ef0e864b4b04a9c31557f
 
 			<p class="w3-large">
 			<div class="w3-code cssHigh notranslate">

@@ -45,9 +45,11 @@ CREATE TABLE Treinos (
     ID_Treino INT AUTO_INCREMENT PRIMARY KEY,
     ID_Exercicio INT NOT NULL,
     ID_Aluno INT NOT NULL,
+    ID_Personal INT NOT NULL,
     Repeticoes VARCHAR(20) NOT NULL,
     CONSTRAINT FK_Exercicio FOREIGN KEY (ID_Exercicio) REFERENCES Exercicios (ID_Exercicio),
-    CONSTRAINT FK_Aluno FOREIGN KEY (ID_Aluno) REFERENCES Aluno (ID_Aluno)
+    CONSTRAINT FK_Aluno FOREIGN KEY (ID_Aluno) REFERENCES Aluno (ID_Aluno),
+    CONSTRAINT FK_Personal FOREIGN KEY (ID_Personal) REFERENCES Personal (ID_Personal)
 );
 
 Select * from aluno;

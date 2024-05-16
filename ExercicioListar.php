@@ -3,7 +3,7 @@
 
 <head>
     <title>GymON</title>
-    <link rel="icon" type="image/png" href="imagens/IE_favicon.png" />
+    <link rel="icon" type="image/png" href="assets/logo-gymon.jpeg" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
         body {
@@ -80,12 +80,6 @@
 
     <div class="exercise-list">
         <h1>Relação de Exercícios</h1>
-        <p>Acesso em:
-            <?php
-            date_default_timezone_set("America/Sao_Paulo");
-            $data = date("d/m/Y H:i:s", time());
-            echo "<span class='small'>$data</span>";
-            ?>
         </p>
         <?php
         $conn = mysqli_connect($dbHost, $username, $password, $dbname);

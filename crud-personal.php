@@ -9,7 +9,8 @@
 
     $email_personal_logado = $_SESSION['email'];
 
-    $sql = "SELECT * FROM Personal WHERE Email_Personal = '$email_personal_logado'";
+        $sql = "SELECT * FROM Personal WHERE Email_Personal = '$email_personal_logado'";
+
 
     $result = $conex->query($sql);
 ?>

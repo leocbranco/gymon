@@ -1,5 +1,5 @@
 .menu-top {
-    background-color: #800000; 
+    background-color: #23262b; 
     padding: 10px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     position: fixed;
@@ -7,20 +7,26 @@
     width: 100%;
     z-index: 2;
 }
+
 .menu-bar {
     color: #ffffff;
-    font-size: 18px;
+    font-size: 20px;
     padding: 12px;
 }
 
 .menu-bar a {
     text-decoration: none;
     color: #ffffff;
-    padding: 16px;
+    padding: 12px 20px;
+    transition: background-color 0.3s ease;
+}
+
+.menu-bar a:hover {
+    color: #329834;
 }
 
 .sidebar {
-    background-color: #3e3e3e; 
+    background-color: #16181b; 
     width: 270px;
     position: fixed;
     left: -270px; 
@@ -32,13 +38,32 @@
 }
 
 .sidebar a {
-    padding: 10px;
+    margin-left: 18px;
+    padding: 12px 2px;
     text-decoration: none;
     font-size: 18px;
     color: #ffffff;
     display: block;
+    transition: background-color 0.3s ease;
 }
 
 .sidebar a:hover {
-    background-color: #800000;
+    color: #329834;
+    background-color: #16181b;
+}
+
+.sidebar a i {
+    margin-right: 5px; 
+}
+
+.logout-btn {
+    padding: 30px;
+}
+
+.menu-container{
+    height: 600px;
+}
+
+.logout-btn{
+    height: 70px;
 }

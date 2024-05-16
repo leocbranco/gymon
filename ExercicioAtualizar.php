@@ -41,7 +41,7 @@
         label {
             font-weight: bold;
             margin-bottom: 5px;
-            color: #800000;
+            color: #329834;
         }
 
         input,
@@ -61,7 +61,7 @@
         }
 
         .btn {
-            background-color: #800000;
+            background-color: #329834;
             color: #fff;
             padding: 8px 20px;
             border: none;
@@ -99,7 +99,7 @@
         }
 
         .btn-file {
-            background-color: #800000;
+            background-color: #329834;
             color: #fff;
             padding: 5px 10px;
             border: none;

@@ -1,24 +1,36 @@
 <?php  
-    session_start();
-    if (isset($_POST['login']) && !empty($_POST['email']) && !empty($_POST['senha'])) {
-        include_once('cfg.php');
-        $email = $_POST['email'];
-        $senha = $_POST['senha'];
-        $sql = "SELECT * FROM Personal WHERE Email_Personal = '$email' AND Senha_Personal = '$senha'";
-        $result = $conex->query($sql);
+session_start();
+if (isset($_POST['login']) && !empty($_POST['email']) && !empty($_POST['senha'])) {
+    include_once('cfg.php');
+    $email = $_POST['email'];
+    $senha = $_POST['senha'];
 
-     if (mysqli_num_rows($result) < 1) {
+    // Consulta para verificar as credenciais do usuário
+    $sql = "SELECT * FROM Personal WHERE Email_Personal = '$email' AND Senha_Personal = '$senha'";
+    $result = $conex->query($sql);
+
+    if (mysqli_num_rows($result) < 1) {
+        // Credenciais incorretas
         unset($_SESSION['email']);
         unset($_SESSION['senha']);
         unset($_SESSION['id']);
         header('Location: login-personal.php');
-        } else {
-         $row = $result->fetch_assoc();
-         $_SESSION['id'] = $row['ID_Personal'];
-         $_SESSION['email'] = $email;
+    } else {
+        // Credenciais corretas
+        $row = $result->fetch_assoc();
+        $_SESSION['id'] = $row['ID_Personal'];
+        $_SESSION['email'] = $email;
         $_SESSION['senha'] = $senha;
-            
-        header('Location: home-personal.php');
+
+        if ($row['EhAdmin']) {
+            // Se for administrador, redireciona para a página de administração
+            $_SESSION['admin'] = true;
+            header('Location: home-admin.php');
+        } else {
+            // Se for personal trainer, redireciona para a página de personal
+            $_SESSION['admin'] = false;
+            header('Location: home-personal.php');
+        }
     }
 }
 ?>

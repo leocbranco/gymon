@@ -1,3 +1,23 @@
+<?php
+session_start();
+if (!isset($_SESSION['email']) || empty($_SESSION['email'])) {
+    header('Location: login-personal.php');
+    exit;
+}
+
+include_once('cfg.php');
+
+$email = $_SESSION['email'];
+
+
+$stmt = $conex->prepare("SELECT Status_Personal FROM Personal WHERE Email_Personal = ?");
+$stmt->bind_param('s', $email);
+$stmt->execute();
+$stmt->bind_result($status_personal);
+$stmt->fetch();
+$stmt->close();
+?>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -21,15 +41,27 @@
     <div class="sidebar" id="sidebar">
     <div class="menu-container">
         <br>
-        <a href="ExercicioCriar.php"><i class="fas fa-dumbbell"></i> Adicionar Exercício</a>
-        <a href="ExercicioListar.php"><i class="fas fa-list"></i> Lista de Exercícios</a>
-        <a href="crud-personal.php"><i class="fas fa-user"></i> Visualizar Perfil</a>
+        <?php if ($status_personal == 1): ?>
+            <a href="ExercicioCriar.php"><i class="fas fa-dumbbell"></i> Adicionar Exercício</a>
+            <a href="ExercicioListar.php"><i class="fas fa-list"></i> Lista de Exercícios</a>
+            <a href="crud-personal.php"><i class="fas fa-user"></i> Visualizar Perfil</a>
+        <?php endif; ?>
     </div>
     <div class="logout-btn">
         <a href="#" onclick="confirmLogout()" ><i class="fas fa-sign-out-alt"></i> Sair</a>
     </div>
     </div>
     </div>
+
+    <?php
+    if ($status_personal == 0) {
+        echo "<p>Seu cadastro foi negado.</p>";
+        // Ou redirecione para uma página específica informando que o cadastro foi negado
+    } elseif ($status_personal != 1) {
+        echo "<p>Seu cadastro ainda está sendo avaliado.</p>";
+        // Ou redirecione para uma página específica informando que o cadastro está em avaliação
+    }
+    ?>
 
     <script>
         function toggleSidebar() {

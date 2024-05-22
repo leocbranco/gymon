@@ -20,7 +20,6 @@
             overflow: hidden;
         }
     </style>
-    
     <?php require 'menu-admin.php'; ?>
     
 </body>

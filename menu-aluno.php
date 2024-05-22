@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="css/style-menu.css">
     <link rel="icon" href="assets/logo-gymon.jpeg" type="image/x-icon">
     <script src="https://kit.fontawesome.com/998c60ef77.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="css/menu.css">
+    <link rel="stylesheet" href="css/menuu.css">
 </head>
 <body>
     <?php require 'modoescuro/mododark.php'; ?>

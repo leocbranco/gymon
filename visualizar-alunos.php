@@ -13,7 +13,7 @@ $result = $conex->query($sql);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Visualizar Alunos - GymON</title>
-    <link rel="stylesheet" href="css/style.css"> 
+    <link rel="stylesheet" href="css/styleadm.css"> 
 </head>
 <body>
     <h1>Lista de Alunos</h1>

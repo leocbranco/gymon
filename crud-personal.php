@@ -28,27 +28,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GymON</title>
     <link rel="icon" href="assets/logo-gymon.jpeg" type="image/x-icon">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
+    <link rel="stylesheet" href="css/style.css"> <!-- Inclua seu arquivo CSS -->
     <style>
         body {
-            font-family: 'Roboto', sans-serif;
+            transition: background-color 0.2s linear, color 0.2s linear;
+            background-color: #1C1C1C;
+        }
+
+        body.light {
             background-color: #eef1f7;
-            margin: 0;
-            padding: 0;
+            color: #000000;
+        }
+
+        body.light .container {
+            background-color: #ffffff;
+            color: #000000;
         }
 
         .container {
             max-width: 800px;
             margin: 50px auto;
             padding: 20px;
-            background-color: #ffffff;
+            background-color: #1e1e1e; /* Cor do modo escuro */
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            color: #ffffff;
         }
 
         h2 {
             text-align: center;
             margin-bottom: 30px;
-            color: #333;
+            color: inherit;
             font-size: 2rem;
         }
 
@@ -61,15 +72,16 @@
         .form-group label {
             flex: 0 0 150px;
             font-weight: bold;
-            color: #333;
+            color: inherit;
         }
 
         .form-group .value {
             flex: 1;
-            background-color: #f9f9f9;
+            background-color: #333333; /* Cor do modo escuro */
             padding: 10px;
             border-radius: 5px;
-            border: 1px solid #ddd;
+            border: 1px solid #444444; /* Cor do modo escuro */
+            color: #ffffff;
         }
 
         .btn-group {
@@ -104,22 +116,6 @@
             background-color: #b5202b;
         }
 
-        .btn-back {
-            display: inline-block;
-            margin-bottom: 20px;
-            text-decoration: none;
-            padding: 10px 15px;
-            border-radius: 5px;
-            background-color: #dc3545;
-            color: #fff;
-            transition: background-color 0.3s ease;
-        }
-
-        .btn-back:hover {
-            background-color: #b5202b;
-        }
-
-        /* Removido namespace W3 */
         svg {
             vertical-align: middle;
             margin-right: 5px;
@@ -127,7 +123,7 @@
     </style>
 </head>
 <body>
-    <a class="btn-back" href="home-personal.php">Voltar</a>
+    <?php require 'menu.php'; ?>
     <div class="container">
         <h2>Dados Pessoais</h2>
         <?php
@@ -180,5 +176,6 @@
             }
         ?>
     </div>
+    <script src="modo-escuro.js"></script>
 </body>
 </html>

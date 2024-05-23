@@ -91,7 +91,7 @@ if(isset($_POST['register']))
             </div>
             <input type="date" name="data_nasc" id="data_nasc" placeholder="Data de Nascimento:" class="register-input" required>
             <br>
-            <hr class="line-separator">
+            <hr class="line-separator"> 
             <br>
             <button type="submit" name="register" value="Registrar-se" class="register-button">Registrar-se</button>
         </form>

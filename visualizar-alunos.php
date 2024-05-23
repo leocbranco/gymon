@@ -14,6 +14,7 @@ $result = $conex->query($sql);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Visualizar Alunos - GymON</title>
     <link rel="stylesheet" href="css/styleadm.css"> 
+    <link rel="icon" href="assets/logo-gymon.jpeg" type="image/x-icon">
 </head>
 <body>
     <h1>Lista de Alunos</h1>

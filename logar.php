@@ -4,10 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="css/style-index.css">
+    <link rel="stylesheet" href="css/stylehome.css">
     <link rel="icon" href="assets/logo-gymon.jpeg" type="image/x-icon">
     <title>GymON</title>
     <style>
+        :root {
+            --red: #329834;
+            --white: #1C1C1C;
+            --dark: #fff;
+        }   
+
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -62,11 +68,6 @@
         .form-group button:hover {
             background-color: #007100;
         }
-        :root {
-            --red: #800000;
-            --white: #1C1C1C;
-            --dark: #fff;
-        }   
 
         .navigation {
             display: flex;
@@ -100,7 +101,7 @@
         }
 
         .back-button:hover {
-            background-color: #5a0000;
+            background-color: #007100;
         }
     </style>
 </head>

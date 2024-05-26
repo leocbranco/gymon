@@ -10,6 +10,26 @@ body {
     overflow: hidden;
 }
 
+.back-button-container {
+    position: absolute;
+    top: 20px;
+    right: 10px;
+}
+
+.back-button {
+    padding: 10px 15px;
+    background-color: #329834;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.back-button:hover {
+    background-color: #007100;
+}
+
 .register-container {
     display: flex;
     width: 100%;
@@ -67,10 +87,10 @@ body {
     width: 100%;
     max-width: 660px;
     display: flex;
-    justify-content: center; 
-    align-items: center; 
+    justify-content: center;
+    align-items: center;
     padding: 10px 20px;
-    background-color: #800000;
+    background-color: #1E90FF;
     color: white;
     border: none;
     border-radius: 8px;
@@ -78,7 +98,7 @@ body {
 }
 
 .file-upload-button:hover {
-    background-color: #329834;
+    background-color: #0000cd;
 }
 
 .login-link {
@@ -102,7 +122,7 @@ body {
     width: 100%;
     max-width: 150px;
     padding: 10px;
-    background-color: #1E90FF;
+    background-color: #329834;
     color: white;
     border: none;
     border-radius: 8px;
@@ -112,7 +132,7 @@ body {
 }
 
 .register-button:hover {
-    background-color: #0056b3;
+    background-color: #007100;
 }
 
 .register-input option {

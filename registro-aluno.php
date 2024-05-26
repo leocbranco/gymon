@@ -55,7 +55,7 @@ if(isset($_POST['register']))
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GymON</title>
-    <link rel="stylesheet" href="css/style-registro.css">
+    <link rel="stylesheet" href="css/styleregistro.css">
     <link rel="icon" href="assets/logo-gymon.jpeg" type="image/x-icon">
     <style>
         .register-image {

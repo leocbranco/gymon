@@ -5,29 +5,24 @@ if (isset($_POST['login']) && !empty($_POST['email']) && !empty($_POST['senha'])
     $email = $_POST['email'];
     $senha = $_POST['senha'];
 
-    // Consulta para verificar as credenciais do usuário
     $sql = "SELECT * FROM Personal WHERE Email_Personal = '$email' AND Senha_Personal = '$senha'";
     $result = $conex->query($sql);
 
     if (mysqli_num_rows($result) < 1) {
-        // Credenciais incorretas
         unset($_SESSION['email']);
         unset($_SESSION['senha']);
         unset($_SESSION['id']);
         header('Location: login-personal.php');
     } else {
-        // Credenciais corretas
         $row = $result->fetch_assoc();
         $_SESSION['id'] = $row['ID_Personal'];
         $_SESSION['email'] = $email;
         $_SESSION['senha'] = $senha;
 
         if ($row['EhAdmin']) {
-            // Se for administrador, redireciona para a página de administração
             $_SESSION['admin'] = true;
             header('Location: home-admin.php');
         } else {
-            // Se for personal trainer, redireciona para a página de personal
             $_SESSION['admin'] = false;
             header('Location: home-personal.php');
         }
@@ -105,7 +100,7 @@ if (isset($_POST['login']) && !empty($_POST['email']) && !empty($_POST['senha'])
         .register-button {
             width: 100%;
             padding: 10px;
-            background-color: #1E90FF;
+            background-color: #329834;
             color: white;
             border: none;
             border-radius: 8px;
@@ -115,7 +110,7 @@ if (isset($_POST['login']) && !empty($_POST['email']) && !empty($_POST['senha'])
         }
 
         .register-button:hover {
-            background-color: #0056b3;
+            background-color: #007100;
         }
 
         .login-link {
@@ -127,6 +122,26 @@ if (isset($_POST['login']) && !empty($_POST['email']) && !empty($_POST['senha'])
             text-decoration: underline;
         }
 
+        .back-button-container {
+            position: absolute;
+            top: 20px;
+            right: 10px;
+        }
+
+        .back-button {
+            padding: 10px 15px;
+            background-color: #329834;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .back-button:hover {
+            background-color: #007100;
+        }
+
         @media only screen and (max-width: 768px) {
             .register-form input,
             .register-form select {
@@ -136,6 +151,9 @@ if (isset($_POST['login']) && !empty($_POST['email']) && !empty($_POST['senha'])
     </style>
 </head>
 <body>
+<div class="back-button-container">
+    <a href="home.php" class="back-button">Voltar</a>
+</div>
 <div class="register-container">
     <img src="assets/logo-gymon.jpeg" alt="GymON Logo" class="logo">
     <div class="register-form">

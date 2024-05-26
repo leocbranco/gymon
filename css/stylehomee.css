@@ -119,11 +119,10 @@ body{
     color: var(--white);
     border-radius: 10px;
     font-weight: 700;
-    transition: all 0.5s;
 }
 
 .home-btn hover{
-    background: var(--red);
+    background: #007100;
 }
 
 .home-img img{
@@ -230,8 +229,8 @@ body{
 
 
 .home-btn:hover {
-    background: var(--white);
-    border-color: var(--white);
+    background: #007100;
+    border-color: #007100;
 }
 
 .home-btn:active {

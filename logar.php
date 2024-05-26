@@ -53,14 +53,14 @@
             width: 100%;
             padding: 10px;
             font-size: 16px;
-            background-color: #800000;
+            background-color: #329834;
             color: #fff;
             border: none;
             border-radius: 4px;
             cursor: pointer;
         }
         .form-group button:hover {
-            background-color: #5a0000;
+            background-color: #007100;
         }
         :root {
             --red: #800000;
@@ -90,7 +90,7 @@
             position: fixed;
             top: 20px;
             right: 20px;
-            background-color: #800000;
+            background-color: #329834;
             color: #fff;
             border: none;
             border-radius: 4px;

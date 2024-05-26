@@ -10,15 +10,20 @@ include_once('cfg.php');
 if (isset($_POST['enviar'])) {
     $idAluno = $_POST['id_aluno'];
     $idPersonal = $_SESSION['id'];
-    $idExercicio = $_POST['id_exercicio'];
+    $exercicios = $_POST['id_exercicio'];
     $repeticoes = $_POST['repeticoes'];
+    $series = $_POST['series'];
 
-    $sql = "INSERT INTO Treinos (ID_Exercicio, ID_Aluno, ID_Personal, Repeticoes) VALUES ('$idExercicio', '$idAluno', '$idPersonal', '$repeticoes')";
-    if ($conex->query($sql) === TRUE) {
-        echo "Treino enviado com sucesso!";
-    } else {
-        echo "Erro: " . $sql . "<br>" . $conex->error;
+    foreach ($exercicios as $index => $idExercicio) {
+        $rep = $repeticoes[$index];
+        $ser = $series[$index];
+        $sql = "INSERT INTO Treinos (ID_Exercicio, ID_Aluno, ID_Personal, Repeticoes, Series) VALUES ('$idExercicio', '$idAluno', '$idPersonal', '$rep', '$ser')";
+        if ($conex->query($sql) !== TRUE) {
+            echo "Erro: " . $sql . "<br>" . $conex->error . "<br>";
+        }
     }
+    header("Location: ficha_treino.php?id_aluno=$idAluno");
+    exit();
 }
 
 $idAluno = $_GET['id'];
@@ -77,25 +82,87 @@ $resultExercicios = $conex->query($sqlExercicios);
             background-color: #333;
             color: white;
         }
+        .table {
+            margin-top: 20px;
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .table th, .table td {
+            border: 1px solid #ddd;
+            padding: 10px;
+        }
+        .table th {
+            background-color: #333;
+        }
+        .add-exercise {
+            margin-top: 20px;
+            background-color: #1E90FF;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            cursor: pointer;
+            display: inline-block;
+        }
+        .add-exercise:hover {
+            background-color: #0056b3;
+        }
     </style>
+    <script>
+        function addExercise() {
+            const exerciseContainer = document.getElementById('exercises-container');
+            const newExercise = document.createElement('div');
+            newExercise.classList.add('form-group');
+            newExercise.innerHTML = `
+                <div class="form-group">
+                    <label for="id_exercicio">Exercício:</label>
+                    <select name="id_exercicio[]" required>
+                        <?php
+                        $resultExercicios->data_seek(0);
+                        while($exercicio = $resultExercicios->fetch_assoc()): ?>
+                        <option value="<?php echo $exercicio['ID_Exercicio']; ?>"><?php echo $exercicio['Nome_Exercicio']; ?></option>
+                        <?php endwhile; ?>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="repeticoes">Repetições:</label>
+                    <input type="text" name="repeticoes[]" required>
+                </div>
+                <div class="form-group">
+                    <label for="series">Séries:</label>
+                    <input type="text" name="series[]" required>
+                </div>
+            `;
+            exerciseContainer.appendChild(newExercise);
+        }
+    </script>
 </head>
 <body>
     <div class="container">
         <h1>Enviar Treino para <?php echo $aluno['Nome_Aluno']; ?></h1>
         <form method="POST" action="">
             <input type="hidden" name="id_aluno" value="<?php echo $aluno['ID_Aluno']; ?>">
-            <div class="form-group">
-                <label for="id_exercicio">Exercício:</label>
-                <select name="id_exercicio" id="id_exercicio" required>
-                    <?php while($exercicio = $resultExercicios->fetch_assoc()): ?>
-                    <option value="<?php echo $exercicio['ID_Exercicio']; ?>"><?php echo $exercicio['Nome_Exercicio']; ?></option>
-                    <?php endwhile; ?>
-                </select>
+            <div id="exercises-container">
+                <div class="form-group">
+                    <label for="id_exercicio">Exercício:</label>
+                    <select name="id_exercicio[]" required>
+                        <?php
+                        $resultExercicios->data_seek(0);
+                        while($exercicio = $resultExercicios->fetch_assoc()): ?>
+                        <option value="<?php echo $exercicio['ID_Exercicio']; ?>"><?php echo $exercicio['Nome_Exercicio']; ?></option>
+                        <?php endwhile; ?>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="repeticoes">Repetições:</label>
+                    <input type="text" name="repeticoes[]" required>
+                </div>
+                <div class="form-group">
+                    <label for="series">Séries:</label>
+                    <input type="text" name="series[]" required>
+                </div>
             </div>
-            <div class="form-group">
-                <label for="repeticoes">Repetições:</label>
-                <input type="text" name="repeticoes" id="repeticoes" required>
-            </div>
+            <button type="button" class="add-exercise" onclick="addExercise()">Adicionar Exercício</button>
             <button type="submit" name="enviar" class="button">Enviar Treino</button>
         </form>
     </div>

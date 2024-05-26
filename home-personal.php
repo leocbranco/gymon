@@ -87,6 +87,6 @@ $result = $conex->query($sql);
             </tbody>
         </table>
     </div>
-    <?php require 'menu-aluno.php'; ?>
+    <?php require 'menu.php'; ?>
 </body>
 </html>

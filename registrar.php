@@ -75,7 +75,7 @@
             background-color: #007100;
         }
         :root {
-            --red: #800000;
+            --red: #329834;
             --white: #1C1C1C;
             --dark: #fff;
         }   

@@ -120,6 +120,26 @@
             text-decoration: underline;
         }
 
+        .back-button-container {
+            position: absolute;
+            top: 20px;
+            right: 10px;
+        }
+
+        .back-button {
+            padding: 10px 15px;
+            background-color: #329834;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .back-button:hover {
+            background-color: #007100;
+        }
+
         @media only screen and (max-width: 768px) {
             .register-form input,
             .register-form select {
@@ -129,6 +149,9 @@
     </style>
 </head>
 <body>
+<div class="back-button-container">
+    <a href="home.php" class="back-button">Voltar</a>
+</div>
 <div class="register-container">
     <img src="assets/logo-gymon.jpeg" alt="GymON Logo" class="logo">
     <div class="register-form">

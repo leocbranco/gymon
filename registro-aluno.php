@@ -69,6 +69,9 @@ if(isset($_POST['register']))
     </style>
 </head>
 <body>
+<div class="back-button-container">
+    <a href="home.php" class="back-button">Voltar</a>
+</div>
 <div class="register-container">
     <div class="register-image"></div>
     <div class="register-form">

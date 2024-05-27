@@ -37,112 +37,140 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GymON</title>
     <link rel="icon" href="assets/logo-gymon.jpeg" type="image/x-icon">
     <style>
-        body{
-            background-color: #1B1F27;
-            font-family: Arial, Helvetica, sans-serif;
-            overflow: hidden;
-        }
-
-        .area-login{
-            display: flex;
-            justify-content: center;
+        body {
+            transition: background-color 0.2s linear, color 0.2s linear;
+            background-color: #1C1C1C;
             align-items: center;
-            height: 100vh;
-            justify-content: center;
-            align-items: center;
+            margin: 0;
+            padding: 0;
         }
 
-        .login{
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            background-color: #1B1F27; 
-            border: 2px solid #C0C0C0; 
-            border-radius: 10px;
-            width: 355px;
-            height: 520px;
-            padding: 35px;
+        body.light {
+            background-color: #eef1f7;
+            color: #000000;
         }
 
-        .login form{
-            display: flex;
-            width: 100%;
-            flex-direction: column;
+        body.light .container {
+            background-color: #ffffff;
+            color: #000000;
         }
 
-        .login input{
-            margin-top: 10px;
-            background-color: transparent;
-            padding-left: 10px;
-            color: #CBD0F7;
-            border: 1px solid #C0C0C0; 
-            height: 45px;
-            outline: none; 
+        .container {
+            max-width: 800px;
+            margin: 10% auto;
+            padding: 20px;
+            background-color: #1e1e1e; /* Cor do modo escuro */
             border-radius: 8px;
-            width: 100%; 
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            color: #ffffff;
         }
 
-        .login img{
-            width: 50px;
-            height: auto;
+        h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: inherit;
+            font-size: 2rem;
         }
 
-        input::placeholder{
-            color: #CBD0F7;
-            font-size: 14px;
+        .form-group {
+            display: flex;
+            margin-bottom: 15px;
+            align-items: center;
         }
 
-        form [type="submit"]{
-            display: block;
-            background-color: #181920;
-            font-size: 14px;
-            text-transform: uppercase;
+        .form-group label {
+            flex: 0 0 150px;
             font-weight: bold;
-            cursor: pointer;
+            color: inherit;
+        }
+
+        .form-group input {
+            flex: 1;
+            background-color: #333333; /* Cor do modo escuro */
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #444444; /* Cor do modo escuro */
+            color: #ffffff;
+        }
+
+        .btn-group {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .btn {
+            padding: 10px 20px;
             border: none;
-            color: white;
-            height: 45px;
-            border-radius: 8px;
-            margin-top: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin: 0 10px;
         }
 
-        p{
-            color:#CBD0F7;
-            text-decoration: none;
-            margin-left: 10px;
-            margin-top: 10px; 
+        .btn-primary {
+            background-color: #007bff;
+            color: #fff;
         }
 
-        a{
-            color: #CBD0F7;
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+
+        .btn-danger {
+            background-color: #dc3545;
+            color: #fff;
+        }
+
+        .btn-danger:hover {
+            background-color: #b5202b;
+        }
+
+        .btn-voltar {
+            position: absolute;
+            top: 20px;
+            right: 20px;
             text-decoration: none;
-            margin-left: 10px;
-            margin-top: 10px; 
         }
     </style>
 </head>
 <body>
-    <a href="crud-personal.php">Voltar</a>
-    <section class="area-login">
-        <div class="login">
-            <div>
-                <img src="assets/logo-gymon.jpeg">
+    <a href="crud-personal.php" class="btn btn-danger btn-voltar">Voltar</a>
+    <div class="container">
+        <h2>Editar Dados</h2>
+        <form method="POST" action="atualizar-personal.php">
+            <div class="form-group">
+                <label for="nome">Nome:</label>
+                <input type="text" id="nome" name="nome" value="<?php echo $nome?>" placeholder="Nome:" autofocus>
             </div>
-            <form method="POST" action="atualizar-personal.php">
-                <input type="text" name="nome" value="<?php echo $nome?>" placeholder="Nome:" autofocus>
-                <input type="text" name="email" value="<?php echo $email?>" placeholder="E-mail:" readonly>
-                <input type="password" name="senha" value="<?php echo $senha?>" placeholder="Senha:">
-                <input type="text" name="cpf" value="<?php echo $CPF?>" placeholder="CPF:" readonly>
-                <input type="text" name="genero" value="<?php echo $genero?>" placeholder="Gênero:">
-                <input type="date" name="data_nasc" value="<?php echo $data_nasc?>" placeholder="Data de Nascimento:">
-                <input href="crud-personal.php" type="submit" name="update" value="Salvar">
-                <input type="hidden" name="ID_Personal" id="update" value='<?php echo $id ?>'>
-            </form>
-        </div>
-    </section>
+            <div class="form-group">
+                <label for="email">E-mail:</label>
+                <input type="text" id="email" name="email" value="<?php echo $email?>" placeholder="E-mail:" readonly>
+            </div>
+            <div class="form-group">
+                <label for="senha">Senha:</label>
+                <input type="password" id="senha" name="senha" value="<?php echo $senha?>" placeholder="Senha:">
+            </div>
+            <div class="form-group">
+                <label for="cpf">CPF:</label>
+                <input type="text" id="cpf" name="cpf" value="<?php echo $CPF?>" placeholder="CPF:" readonly>
+            </div>
+            <div class="form-group">
+                <label for="genero">Gênero:</label>
+                <input type="text" id="genero" name="genero" value="<?php echo $genero?>" placeholder="Gênero:">
+            </div>
+            <div class="form-group">
+                <label for="data_nasc">Data de Nascimento:</label>
+                <input type="date" id="data_nasc" name="data_nasc" value="<?php echo $data_nasc?>" placeholder="Data de Nascimento:">
+            </div>
+            <div class="btn-group">
+                <input type="submit" class="btn btn-primary" name="update" value="Salvar">
+            </div>
+            <input type="hidden" name="ID_Personal" id="update" value='<?php echo $id ?>'>
+        </form>
+    </div>
 </body>
 </html>

@@ -66,3 +66,35 @@ body.dark {
 .fa-sun {
   color: #f39c12;
 }
+
+
+body.light {
+  background-color: #fafafa;
+  color: #000;
+}
+
+.container.light {
+  background-color: #ffffff;
+  color: #000;
+}
+
+.container.light h1 {
+  color: #329834;
+}
+
+.container.light th {
+  background-color: #e0e0e0;
+  color: #000;
+}
+
+.container.light tr:nth-child(even) {
+  background-color: #f5f5f5;
+}
+
+.container.light tr:nth-child(odd) {
+  background-color: #fff;
+}
+
+.container.light tr:hover {
+  background-color: #d3d3d3;
+}

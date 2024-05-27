@@ -27,7 +27,7 @@ $resultTreinos = $conex->query($sqlTreinos);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ficha de Treino - GymON</title>
+    <title>GymON</title>
     <link rel="icon" href="assets/logo-gymon.jpeg" type="image/x-icon">
     <style>
         body {
@@ -91,7 +91,7 @@ $resultTreinos = $conex->query($sqlTreinos);
                 <?php endwhile; ?>
             </tbody>
         </table>
-        <a href="personal.php" class="button">Voltar</a>
+        <a href="home-personal.php" class="button">Voltar</a>
     </div>
 </body>
 </html>

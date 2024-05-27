@@ -2,7 +2,6 @@
     session_start();
     include_once('cfg.php');
 
-    // Verifica se o usuário está logado
     if (!isset($_SESSION['email']) || !isset($_SESSION['senha'])) {
         header('Location: login-personal.php');
         exit; 
@@ -10,10 +9,8 @@
 
     $email_personal_logado = $_SESSION['email'];
 
-    // Prepara a consulta SQL
     $sql = "SELECT * FROM Personal WHERE Email_Personal = '$email_personal_logado'";
 
-    // Executa a consulta SQL e verifica se foi bem-sucedida
     $result = $conex->query($sql);
 
     if (!$result) {
@@ -28,12 +25,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GymON</title>
     <link rel="icon" href="assets/logo-gymon.jpeg" type="image/x-icon">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
-    <link rel="stylesheet" href="css/style.css"> <!-- Inclua seu arquivo CSS -->
     <style>
         body {
+            font-family: 'Roboto', sans-serif;
             transition: background-color 0.2s linear, color 0.2s linear;
             background-color: #1C1C1C;
+            align-items: center;
         }
 
         body.light {
@@ -48,9 +45,9 @@
 
         .container {
             max-width: 800px;
-            margin: 50px auto;
+            margin: 10% auto;
             padding: 20px;
-            background-color: #1e1e1e; /* Cor do modo escuro */
+            background-color: #1e1e1e; 
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             color: #ffffff;
@@ -70,17 +67,17 @@
         }
 
         .form-group label {
-            flex: 0 0 150px;
+            flex: 0 0 180px;
             font-weight: bold;
             color: inherit;
         }
 
         .form-group .value {
             flex: 1;
-            background-color: #333333; /* Cor do modo escuro */
+            background-color: #333333; 
             padding: 10px;
             border-radius: 5px;
-            border: 1px solid #444444; /* Cor do modo escuro */
+            border: 1px solid #444444; 
             color: #ffffff;
         }
 
@@ -96,10 +93,11 @@
             cursor: pointer;
             transition: background-color 0.3s ease;
             margin: 0 10px;
+            text-decoration: none;
         }
 
         .btn-primary {
-            background-color: #007bff;
+            background-color: #329834;
             color: #fff;
         }
 

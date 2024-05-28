@@ -8,7 +8,7 @@ if (!isset($_SESSION['id']) || $_SESSION['admin']) {
 include_once('cfg.php');
 
 if (!isset($_GET['id'])) {
-    die('Parâmetro id não fornecido.');
+    header('Location: home-personal.php');
 }
 
 $idAluno = $_GET['id'];

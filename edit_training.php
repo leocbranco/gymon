@@ -14,19 +14,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $repeticoes = intval($_POST['repeticoes']);
     $series = intval($_POST['series']);
 
-    $sql = "UPDATE Treinos SET ID_Exercicio = ?, Repeticoes = ?, Series = ? WHERE ID_Treino = ?";
+    $sql = "UPDATE Exercicios_Treino SET ID_Exercicio = ?, Repeticoes = ?, Series = ? WHERE ID_Exercicio_Treino = ?";
     $stmt = $conex->prepare($sql);
     $stmt->bind_param("iiii", $idExercicio, $repeticoes, $series, $treino_id);
 
     if ($stmt->execute()) {
-        header("Location: list_trainings.php?id=$idAluno");
+        header("Location: list_trainings.php");
         exit();
     } else {
         echo "Erro ao editar treino.";
     }
 } else {
     $treino_id = $_GET['id'];
-    $sql = "SELECT * FROM Treinos WHERE ID_Treino = ?";
+    $sql = "SELECT * FROM Exercicios_Treino WHERE ID_Exercicio_Treino = ?";
     $stmt = $conex->prepare($sql);
     $stmt->bind_param("i", $treino_id);
     $stmt->execute();
@@ -103,8 +103,8 @@ $resultExercicios = $conex->query($sqlExercicios);
     <div class="container">
         <h1>Editar Treino</h1>
         <form method="POST" action="">
-            <input type="hidden" name="id_treino" value="<?php echo htmlspecialchars($treino['ID_Treino']); ?>">
-            <input type="hidden" name="id_aluno" value="<?php echo htmlspecialchars($treino['ID_Aluno']); ?>">
+            <input type="hidden" name="id_treino" value="<?php echo htmlspecialchars($treino['ID_Exercicio_Treino']); ?>">
+            <input type="hidden" name="id_aluno" value="<?php echo htmlspecialchars($treino['ID_Treino']); ?>">
             <div class="form-group">
                 <label for="id_exercicio">Exercício:</label>
                 <select name="id_exercicio" required>

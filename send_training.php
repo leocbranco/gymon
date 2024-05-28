@@ -9,26 +9,41 @@ include_once('cfg.php');
 
 if (isset($_POST['enviar'])) {
     $idAluno = $_POST['id_aluno'];
-    $idPersonal = $_SESSION['id'];
+    $nomeTreino = $_POST['nome_treino'];
+    $dataTreino = $_POST['data_treino'];
     $exercicios = $_POST['id_exercicio'];
     $repeticoes = $_POST['repeticoes'];
     $series = $_POST['series'];
 
+    $sql = "INSERT INTO Treinos (ID_Aluno, Nome_Treino, Data_Treino) VALUES (?, ?, ?)";
+    $stmt = $conex->prepare($sql);
+    $stmt->bind_param("iss", $idAluno, $nomeTreino, $dataTreino);
+    $stmt->execute();
+    $idTreino = $stmt->insert_id;
+
     foreach ($exercicios as $index => $idExercicio) {
-        $rep = $repeticoes[$index];
-        $ser = $series[$index];
-        $sql = "INSERT INTO Treinos (ID_Exercicio, ID_Aluno, ID_Personal, Repeticoes, Series) VALUES ('$idExercicio', '$idAluno', '$idPersonal', '$rep', '$ser')";
-        if ($conex->query($sql) !== TRUE) {
-            echo "Erro: " . $sql . "<br>" . $conex->error . "<br>";
+        $rep = intval($repeticoes[$index]);
+        $ser = intval($series[$index]);
+
+        if (!empty($idExercicio) && $rep > 0 && $ser > 0) {
+            $sql = "INSERT INTO Exercicios_Treino (ID_Treino, ID_Exercicio, Repeticoes, Series) VALUES (?, ?, ?, ?)";
+            $stmt = $conex->prepare($sql);
+            $stmt->bind_param("iiii", $idTreino, $idExercicio, $rep, $ser);
+            $stmt->execute();
+        } else {
+            echo "Erro: Valores inválidos fornecidos.";
         }
     }
-    header("Location: ficha_treino.php?id_aluno=$idAluno");
+    header("Location: list_trainings.php?id_aluno=$idAluno");
     exit();
 }
 
 $idAluno = $_GET['id'];
-$sqlAluno = "SELECT * FROM Aluno WHERE ID_Aluno = $idAluno";
-$resultAluno = $conex->query($sqlAluno);
+$sqlAluno = "SELECT * FROM Aluno WHERE ID_Aluno = ?";
+$stmt = $conex->prepare($sqlAluno);
+$stmt->bind_param("i", $idAluno);
+$stmt->execute();
+$resultAluno = $stmt->get_result();
 $aluno = $resultAluno->fetch_assoc();
 
 $sqlExercicios = "SELECT * FROM Exercicios";
@@ -36,7 +51,7 @@ $resultExercicios = $conex->query($sqlExercicios);
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -47,11 +62,23 @@ $resultExercicios = $conex->query($sqlExercicios);
             background-color: #1C1C1C;
             color: white;
             font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
         }
         .container {
             width: 80%;
-            margin: 0 auto;
+            background-color: #2C2C2C;
             padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+        h1 {
+            text-align: center;
+            color: #329834;
         }
         .button {
             background-color: #1E90FF;
@@ -126,11 +153,11 @@ $resultExercicios = $conex->query($sqlExercicios);
                 </div>
                 <div class="form-group">
                     <label for="repeticoes">Repetições:</label>
-                    <input type="text" name="repeticoes[]" required>
+                    <input type="number" name="repeticoes[]" required>
                 </div>
                 <div class="form-group">
                     <label for="series">Séries:</label>
-                    <input type="text" name="series[]" required>
+                    <input type="number" name="series[]" required>
                 </div>
             `;
             exerciseContainer.appendChild(newExercise);
@@ -139,9 +166,17 @@ $resultExercicios = $conex->query($sqlExercicios);
 </head>
 <body>
     <div class="container">
-        <h1>Enviar Treino para <?php echo $aluno['Nome_Aluno']; ?></h1>
+        <h1>Enviar Treino para <?php echo htmlspecialchars($aluno['Nome_Aluno']); ?></h1>
         <form method="POST" action="">
-            <input type="hidden" name="id_aluno" value="<?php echo $aluno['ID_Aluno']; ?>">
+            <input type="hidden" name="id_aluno" value="<?php echo htmlspecialchars($aluno['ID_Aluno']); ?>">
+            <div class="form-group">
+                <label for="nome_treino">Nome do Treino:</label>
+                <input type="text" id="nome_treino" name="nome_treino" required>
+            </div>
+            <div class="form-group">
+                <label for="data_treino">Data do Treino:</label>
+                <input type="date" id="data_treino" name="data_treino" required>
+            </div>
             <div id="exercises-container">
                 <div class="form-group">
                     <label for="id_exercicio">Exercício:</label>
@@ -155,11 +190,11 @@ $resultExercicios = $conex->query($sqlExercicios);
                 </div>
                 <div class="form-group">
                     <label for="repeticoes">Repetições:</label>
-                    <input type="text" name="repeticoes[]" required>
+                    <input type="number" name="repeticoes[]" required>
                 </div>
                 <div class="form-group">
                     <label for="series">Séries:</label>
-                    <input type="text" name="series[]" required>
+                    <input type="number" name="series[]" required>
                 </div>
             </div>
             <button type="button" class="add-exercise" onclick="addExercise()">Adicionar Exercício</button>

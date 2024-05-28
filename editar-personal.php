@@ -63,7 +63,7 @@
             max-width: 800px;
             margin: 10% auto;
             padding: 20px;
-            background-color: #1e1e1e; /* Cor do modo escuro */
+            background-color: #1e1e1e; 
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             color: #ffffff;
@@ -90,10 +90,10 @@
 
         .form-group input {
             flex: 1;
-            background-color: #333333; /* Cor do modo escuro */
+            background-color: #333333; 
             padding: 10px;
             border-radius: 5px;
-            border: 1px solid #444444; /* Cor do modo escuro */
+            border: 1px solid #444444; 
             color: #ffffff;
         }
 

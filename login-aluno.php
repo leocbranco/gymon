@@ -1,32 +1,26 @@
-<?php  
-    session_start();
-    if(isset($_POST['login']) && !empty($_POST['email']) && !empty($_POST['senha']))
-    {
-        include_once('cfg.php');
-        $email = $_POST['email'];
-        $senha = $_POST['senha'];
-        $sql = "SELECT * FROM Aluno WHERE Email_Aluno = '$email' and Senha_Aluno = '$senha'";
-        $result = $conex->query($sql);
+<?php
+session_start();
+if (isset($_POST['login']) && !empty($_POST['email']) && !empty($_POST['senha'])) {
+    include_once('cfg.php');
+    $email = $_POST['email'];
+    $senha = $_POST['senha'];
+    $sql = "SELECT * FROM Aluno WHERE Email_Aluno = '$email' and Senha_Aluno = '$senha'";
+    $result = $conex->query($sql);
 
-        if(mysqli_num_rows($result) < 1)
-        {
-            unset($_SESSION['email']);
-            unset($_SESSION['senha']);
-            unset($_SESSION['id']);
-            header('Location: login-aluno.php');
-        }
-        else
-        {
-            $row = $result->fetch_assoc();
-            $_SESSION['id'] = $row['ID_Personal'];
-            $_SESSION['email'] = $email;
-            $_SESSION['senha'] = $senha;
-            header('Location: home-aluno.php');
-            
-        }
+    if (mysqli_num_rows($result) < 1) {
+        unset($_SESSION['email']);
+        unset($_SESSION['senha']);
+        unset($_SESSION['id']);
+        header('Location: login-aluno.php');
+    } else {
+        $row = $result->fetch_assoc();
+        $_SESSION['id'] = $row['ID_Aluno']; 
+        $_SESSION['email'] = $email;
+        $_SESSION['senha'] = $senha;
+        header('Location: home-aluno.php');
     }
+}
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">

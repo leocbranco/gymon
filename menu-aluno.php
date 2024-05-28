@@ -11,7 +11,6 @@
     <link rel="stylesheet" href="css/menuu.css">
 </head>
 <body>
-    <?php require 'modoescuro/mododark.php'; ?>
     <div class="menu-top">
         <div class="menu-bar">
             <a href="javascript:void(0)" onclick="toggleSidebar()">☰ Menu</a>
@@ -19,16 +18,12 @@
     </div>
 
     <div class="sidebar" id="sidebar">
-    <div class="menu-container">
-        <br>
-        <a href="crud-aluno.php">Visualizar Perfil</a>
-        <a href="">Visualizar Personais</a>
-        <a href="">Acessar Treinos</a>
-    </div>
-    <div class="logout-btn">
-        <a href="#" onclick="confirmLogout()" ><i class="fas fa-sign-out-alt"></i> Sair</a>
-    </div>
-    </div>
+        <div class="menu-container">
+            <br>
+            <a href="home-aluno.php"><i class="fas fa-dumbbell"></i> Treinos</a>
+            <a href="crud-aluno.php"><i class="fas fa-user"></i> Visualizar Perfil</a>
+            <a href="#" onclick="confirmLogout()"><i class="fas fa-sign-out-alt"></i> Sair</a>
+        </div>
     </div>
 
     <script>
@@ -42,12 +37,10 @@
         }
 
         function confirmLogout() {
-            if(confirm("Tem certeza de que deseja sair da sua conta?")) {
+            if (confirm("Tem certeza de que deseja sair da sua conta?")) {
                 window.location.href = "logout.php";
             }
         }
     </script>
-    <script src="modoescuro/modo-escuro.js"></script>
 </body>
 </html>
-

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GymON</title>
     <link rel="icon" href="assets/logo-gymon.jpeg" type="image/x-icon">
-    <link rel="stylesheet" href="css/style-index.css">
+    <link rel="stylesheet" href="css/stylehomee.css">
     <style>
         body {
             font-family: Arial, sans-serif;

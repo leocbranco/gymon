@@ -1,30 +1,32 @@
 <?php
-    include_once('cfg.php');
+include_once('cfg.php');
+require 'personal_auth.php';
 
-    if(!empty($_GET['ID_Personal']))
+if(!empty($_GET['ID_Personal']))
+{
+    $id = $_GET['ID_Personal'];
+
+    if ($id != $_SESSION['id_personal']) {
+        header('Location: naoautorizado.php');
+        exit();
+    }
+
+    $sqlSelect = "SELECT * FROM Personal WHERE ID_Personal=?";
+    $stmt = $conex->prepare($sqlSelect);
+    $stmt->bind_param('i', $id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if($result->num_rows > 0)
     {
-        $id = $_GET['ID_Personal'];
-
-        $sqlSelect = "SELECT * FROM Personal WHERE ID_Personal=$id";
-
-        $result = $conex->query($sqlSelect);
-
-        if($result->num_rows > 0)
+        while($user_data = mysqli_fetch_assoc($result))
         {
-            while($user_data = mysqli_fetch_assoc($result))
-            {
-                $nome = $user_data['Nome_Personal'];
-                $email = $user_data['Email_Personal'];
-                $senha = $user_data['Senha_Personal'];
-                $CPF = $user_data['CPF_Personal'];
-                $genero = $user_data['Genero_Personal'];
-                $data_nasc = $user_data['DataNasc_Personal'];
-            }
-        }
-        else
-        {
-            header('Location: crud-personal.php');
-            exit(); 
+            $nome = $user_data['Nome_Personal'];
+            $email = $user_data['Email_Personal'];
+            $senha = $user_data['Senha_Personal'];
+            $CPF = $user_data['CPF_Personal'];
+            $genero = $user_data['Genero_Personal'];
+            $data_nasc = $user_data['DataNasc_Personal'];
         }
     }
     else
@@ -32,6 +34,12 @@
         header('Location: crud-personal.php');
         exit(); 
     }
+}
+else
+{
+    header('Location: crud-personal.php');
+    exit(); 
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -144,32 +152,32 @@
         <form method="POST" action="atualizar-personal.php">
             <div class="form-group">
                 <label for="nome">Nome:</label>
-                <input type="text" id="nome" name="nome" value="<?php echo $nome?>" placeholder="Nome:" autofocus>
+                <input type="text" id="nome" name="nome" value="<?php echo htmlspecialchars($nome) ?>" placeholder="Nome:" autofocus>
             </div>
             <div class="form-group">
                 <label for="email">E-mail:</label>
-                <input type="text" id="email" name="email" value="<?php echo $email?>" placeholder="E-mail:" readonly>
+                <input type="text" id="email" name="email" value="<?php echo htmlspecialchars($email) ?>" placeholder="E-mail:" readonly>
             </div>
             <div class="form-group">
                 <label for="senha">Senha:</label>
-                <input type="password" id="senha" name="senha" value="<?php echo $senha?>" placeholder="Senha:">
+                <input type="password" id="senha" name="senha" value="<?php echo htmlspecialchars($senha) ?>" placeholder="Senha:">
             </div>
             <div class="form-group">
                 <label for="cpf">CPF:</label>
-                <input type="text" id="cpf" name="cpf" value="<?php echo $CPF?>" placeholder="CPF:" readonly>
+                <input type="text" id="cpf" name="cpf" value="<?php echo htmlspecialchars($CPF) ?>" placeholder="CPF:" readonly>
             </div>
             <div class="form-group">
                 <label for="genero">Gênero:</label>
-                <input type="text" id="genero" name="genero" value="<?php echo $genero?>" placeholder="Gênero:">
+                <input type="text" id="genero" name="genero" value="<?php echo htmlspecialchars($genero) ?>" placeholder="Gênero:">
             </div>
             <div class="form-group">
                 <label for="data_nasc">Data de Nascimento:</label>
-                <input type="date" id="data_nasc" name="data_nasc" value="<?php echo $data_nasc?>" placeholder="Data de Nascimento:">
+                <input type="date" id="data_nasc" name="data_nasc" value="<?php echo htmlspecialchars($data_nasc) ?>" placeholder="Data de Nascimento:">
             </div>
             <div class="btn-group">
                 <input type="submit" class="btn btn-primary" name="update" value="Salvar">
             </div>
-            <input type="hidden" name="ID_Personal" id="update" value='<?php echo $id ?>'>
+            <input type="hidden" name="ID_Personal" id="update" value='<?php echo htmlspecialchars($id) ?>'>
         </form>
     </div>
 </body>

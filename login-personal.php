@@ -15,7 +15,7 @@ if (isset($_POST['login']) && !empty($_POST['email']) && !empty($_POST['senha'])
         unset($_SESSION['email']);
         unset($_SESSION['senha']);
         unset($_SESSION['id_personal']);
-        header('Location: login-personal.php'); 
+        header('Location: login-personal.php');
     } else {
         $row = $result->fetch_assoc();
         $_SESSION['id_personal'] = $row['ID_Personal'];
@@ -24,10 +24,10 @@ if (isset($_POST['login']) && !empty($_POST['email']) && !empty($_POST['senha'])
 
         if ($row['EhAdmin']) {
             $_SESSION['admin'] = true;
-            header('Location: home-admin.php'); 
+            header('Location: home-admin.php');
         } else {
             $_SESSION['admin'] = false;
-            header('Location: home-personal.php'); 
+            header('Location: home-personal.php');
         }
     }
 }

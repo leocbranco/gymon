@@ -2,14 +2,17 @@
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
-if (!isset($_SESSION['id'])) {
+if (!isset($_SESSION['id_personal'])) {
     header('Location: login-personal.php');
     exit();
 }
 
 include_once('cfg.php');
+require 'personal_auth.php';
 
-$id_personal = $_SESSION['id'];
+$id_personal = $_SESSION['id_personal'];
+verificaPersonal($conex, $id_personal);
+
 $sql_status = "SELECT Status_Personal FROM Personal WHERE ID_Personal = ?";
 $stmt = $conex->prepare($sql_status);
 $stmt->bind_param('i', $id_personal);
@@ -19,7 +22,6 @@ $stmt->fetch();
 $stmt->close();
 
 if ($status_personal == 0) {
-    // Redireciona para uma página de acesso negado ou mostra uma mensagem de erro
     header('Location: acesso-negado.php');
     exit();
 }
@@ -176,6 +178,5 @@ if (isset($_GET['search'])) {
         </table>
     </div>
     <?php require 'menu.php'; ?>
-    <script src="modoescuro/modo-escuro.js"></script>
 </body>
 </html>

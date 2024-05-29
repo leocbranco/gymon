@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="css/menuu.css">
 </head>
 <body>
-    <?php require 'modoescuro/mododark.php'; ?>
     <div class="menu-top">
         <div class="menu-bar">
             <a href="javascript:void(0)" onclick="toggleSidebar()">☰ Menu</a>
@@ -22,8 +21,6 @@
         <br>
         <a href="visualizar-alunos.php"><i class="fas fa-users"></i> Visualizar Alunos</a>
         <a href="visualizar-personais.php"><i class="fas fa-user"></i> Visualizar Personais</a>
-    </div>
-    <div class="logout-btn">
         <a href="#" onclick="confirmLogout()"><i class="fas fa-sign-out-alt"></i> Sair</a>
     </div>
     </div>
@@ -45,6 +42,5 @@
             }
         }
     </script>
-    <script src="modoescuro/modo-escuro.js"></script>
 </body>
 </html>

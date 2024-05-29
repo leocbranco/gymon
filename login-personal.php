@@ -5,26 +5,29 @@ if (isset($_POST['login']) && !empty($_POST['email']) && !empty($_POST['senha'])
     $email = $_POST['email'];
     $senha = $_POST['senha'];
 
-    $sql = "SELECT * FROM Personal WHERE Email_Personal = '$email' AND Senha_Personal = '$senha'";
-    $result = $conex->query($sql);
+    $sql = "SELECT * FROM Personal WHERE Email_Personal = ? AND Senha_Personal = ?";
+    $stmt = $conex->prepare($sql);
+    $stmt->bind_param("ss", $email, $senha);
+    $stmt->execute();
+    $result = $stmt->get_result();
 
-    if (mysqli_num_rows($result) < 1) {
+    if ($result->num_rows < 1) {
         unset($_SESSION['email']);
         unset($_SESSION['senha']);
-        unset($_SESSION['id']);
-        header('Location: login-personal.php');
+        unset($_SESSION['id_personal']);
+        header('Location: login-personal.php'); 
     } else {
         $row = $result->fetch_assoc();
-        $_SESSION['id'] = $row['ID_Personal'];
+        $_SESSION['id_personal'] = $row['ID_Personal'];
         $_SESSION['email'] = $email;
         $_SESSION['senha'] = $senha;
 
         if ($row['EhAdmin']) {
             $_SESSION['admin'] = true;
-            header('Location: home-admin.php');
+            header('Location: home-admin.php'); 
         } else {
             $_SESSION['admin'] = false;
-            header('Location: home-personal.php');
+            header('Location: home-personal.php'); 
         }
     }
 }

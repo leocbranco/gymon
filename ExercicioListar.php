@@ -117,7 +117,7 @@
                         echo "<td>{$row['Nome_Exercicio']}</td>";
                         echo "<td>{$row['Descricao_Exercicio']}</td>";
                         echo "<td>";
-                        if ($row['FotoBin']) {
+                        if (!empty($row['FotoBin'])) {
                             echo "<img src='data:image/png;base64," . base64_encode($row['FotoBin']) . "' alt='Imagem do exercício'/>";
                         } else {
                             echo "<img src='imagens/imagem.png' alt='Imagem padrão'/>";

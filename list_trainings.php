@@ -105,7 +105,6 @@ $result = $stmt->get_result();
                     <td><?php echo htmlspecialchars($row['Data_Treino']); ?></td>
                     <td class="actions">
                         <a href="view_training.php?id=<?php echo $row['ID_Treino']; ?>&id_aluno=<?php echo $idAluno; ?>" class="button">Ver Exercícios</a>
-                        <a href="edit_training.php?id=<?php echo $row['ID_Treino']; ?>&id_aluno=<?php echo $idAluno; ?>" class="button">Editar</a>
                         <a href="delete_training.php?id=<?php echo $row['ID_Treino']; ?>&id_aluno=<?php echo $idAluno; ?>" class="button" onclick="return confirm('Tem certeza que deseja excluir este treino?');">Excluir</a>
                     </td>
                 </tr>

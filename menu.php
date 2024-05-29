@@ -26,12 +26,11 @@ $stmt->close();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GymON</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
-    <link rel="stylesheet" href="css/style-menu.css">
     <link rel="icon" href="assets/logo-gymon.jpeg" type="image/x-icon">
     <link rel="stylesheet" href="css/menuu.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body>
-    <?php require 'modoescuro/mododark.php'; ?>
     <div class="menu-top">
         <div class="menu-bar">
             <a href="javascript:void(0)" onclick="toggleSidebar()">☰ Menu</a>
@@ -75,6 +74,5 @@ $stmt->close();
             }
         }
     </script>
-    <script src="modoescuro/modo-escuro.js"></script>
 </body>
 </html>

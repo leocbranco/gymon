@@ -2,15 +2,42 @@
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
-if (!isset($_SESSION['id']) || $_SESSION['admin']) {
+if (!isset($_SESSION['id'])) {
     header('Location: login-personal.php');
     exit();
 }
 
 include_once('cfg.php');
 
-$sql = "SELECT * FROM Aluno";
-$result = $conex->query($sql);
+$id_personal = $_SESSION['id'];
+$sql_status = "SELECT Status_Personal FROM Personal WHERE ID_Personal = ?";
+$stmt = $conex->prepare($sql_status);
+$stmt->bind_param('i', $id_personal);
+$stmt->execute();
+$stmt->bind_result($status_personal);
+$stmt->fetch();
+$stmt->close();
+
+if ($status_personal == 0) {
+    // Redireciona para uma página de acesso negado ou mostra uma mensagem de erro
+    header('Location: acesso-negado.php');
+    exit();
+}
+
+$search = '';
+if (isset($_GET['search'])) {
+    $search = $_GET['search'];
+    $sql = "SELECT * FROM Aluno WHERE Nome_Aluno LIKE ?";
+    $stmt = $conex->prepare($sql);
+    $search_param = '%' . $search . '%';
+    $stmt->bind_param('s', $search_param);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $stmt->close();
+} else {
+    $sql = "SELECT * FROM Aluno";
+    $result = $conex->query($sql);
+}
 ?>
 
 <!DOCTYPE html>
@@ -48,6 +75,31 @@ $result = $conex->query($sql);
             color: #329834;
             font-size: 24px;
             transition: color 0.2s linear;
+        }
+        form {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        input[type="text"] {
+            padding: 8px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-right: 10px;
+        }
+        input[type="submit"] {
+            background-color: #329834;
+            color: white;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+        input[type="submit"]:hover {
+            background-color: #0056b3;
         }
         table {
             width: 100%;
@@ -91,6 +143,10 @@ $result = $conex->query($sql);
 <body>
     <div class="container">
         <h1>Alunos Cadastrados</h1>
+        <form method="get" action="">
+            <input type="text" name="search" value="<?php echo htmlspecialchars($search); ?>" placeholder="Pesquisar aluno pelo nome">
+            <input type="submit" value="Pesquisar">
+        </form>
         <table>
             <thead>
                 <tr>

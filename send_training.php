@@ -1,6 +1,8 @@
 <?php
-session_start();
-if (!isset($_SESSION['id']) || $_SESSION['admin']) {
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+if (!isset($_SESSION['id_personal']) || $_SESSION['admin']) {
     header('Location: login-personal.php');
     exit();
 }

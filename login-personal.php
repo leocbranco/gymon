@@ -1,5 +1,8 @@
 <?php  
-session_start();
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+
 if (isset($_POST['login']) && !empty($_POST['email']) && !empty($_POST['senha'])) {
     include_once('cfg.php');
     $email = $_POST['email'];
@@ -32,6 +35,7 @@ if (isset($_POST['login']) && !empty($_POST['email']) && !empty($_POST['senha'])
     }
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">

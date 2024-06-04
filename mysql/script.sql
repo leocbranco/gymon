@@ -24,7 +24,8 @@ CREATE TABLE Personal (
     Genero_Personal VARCHAR(100),
     CPF_Personal VARCHAR(50),
     CREF_Personal VARCHAR(50),
-    Status_Personal BOOLEAN
+    Status_Personal BOOLEAN,
+    EhAdmin BOOLEAN DEFAULT FALSE
 );
 
 CREATE TABLE Exercicios (
@@ -43,14 +44,25 @@ CREATE TABLE Administrador (
 
 CREATE TABLE Treinos (
     ID_Treino INT AUTO_INCREMENT PRIMARY KEY,
-    ID_Exercicio INT NOT NULL,
-    ID_Aluno INT NOT NULL,
-    ID_Personal INT NOT NULL,
-    Repeticoes VARCHAR(20) NOT NULL,
-    CONSTRAINT FK_Exercicio FOREIGN KEY (ID_Exercicio) REFERENCES Exercicios (ID_Exercicio),
-    CONSTRAINT FK_Aluno FOREIGN KEY (ID_Aluno) REFERENCES Aluno (ID_Aluno),
-    CONSTRAINT FK_Personal FOREIGN KEY (ID_Personal) REFERENCES Personal (ID_Personal)
+    ID_Aluno INT,
+    Nome_Treino VARCHAR(255),
+    Data_Treino DATE,
+    FOREIGN KEY (ID_Aluno) REFERENCES Aluno(ID_Aluno)
 );
 
-Select * from aluno;
-Select * from personal;
+CREATE TABLE Exercicios_Treino (
+    ID_Exercicio_Treino INT AUTO_INCREMENT PRIMARY KEY,
+    ID_Treino INT,
+    ID_Exercicio INT,
+    Repeticoes INT,
+    Series INT,
+    FOREIGN KEY (ID_Treino) REFERENCES Treinos(ID_Treino),
+    FOREIGN KEY (ID_Exercicio) REFERENCES Exercicios(ID_Exercicio)
+);
+
+SET SQL_SAFE_UPDATES = 0;
+UPDATE Personal SET EhAdmin = TRUE WHERE Email_Personal = 'admin@gmail.com';
+SET SQL_SAFE_UPDATES = 1;
+
+SELECT * FROM Personal WHERE Email_Personal = 'admin@gmail.com';
+ALTER TABLE Personal ADD COLUMN EhAdmin BOOLEAN DEFAULT FALSE;

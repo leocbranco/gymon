@@ -83,7 +83,7 @@ $resultExercicios = $conex->query($sqlExercicios);
             color: #329834;
         }
         .button {
-            background-color: #1E90FF;
+            background-color: #329834;
             color: white;
             padding: 10px 20px;
             text-decoration: none;
@@ -92,7 +92,7 @@ $resultExercicios = $conex->query($sqlExercicios);
             display: inline-block;
         }
         .button:hover {
-            background-color: #0056b3;
+            background-color: #007100;
         }
         .form-group {
             margin-bottom: 15px;
@@ -125,7 +125,7 @@ $resultExercicios = $conex->query($sqlExercicios);
         }
         .add-exercise {
             margin-top: 20px;
-            background-color: #1E90FF;
+            background-color: #329834;
             color: white;
             padding: 10px 20px;
             text-decoration: none;
@@ -134,7 +134,7 @@ $resultExercicios = $conex->query($sqlExercicios);
             display: inline-block;
         }
         .add-exercise:hover {
-            background-color: #0056b3;
+            background-color: #007100;
         }
     </style>
     <script>

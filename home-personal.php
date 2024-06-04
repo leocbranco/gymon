@@ -101,12 +101,13 @@ if (isset($_GET['search'])) {
             transition: background-color 0.3s ease;
         }
         input[type="submit"]:hover {
-            background-color: #0056b3;
+            background-color: #007100;
         }
         table {
             width: 100%;
             border-collapse: collapse;
             margin-bottom: 20px;
+            overflow-x: auto;
         }
         th, td {
             padding: 8px 12px;
@@ -136,9 +137,51 @@ if (isset($_GET['search'])) {
             transition: background-color 0.3s ease;
             font-size: 14px;
             margin-right: 5px;
+            display: inline-block;
         }
         .button:hover {
-            background-color: #0056b3;
+            background-color: #007100;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            table {
+                display: block;
+                overflow-x: auto;
+                white-space: nowrap;
+            }
+            form {
+                flex-direction: column;
+                align-items: center;
+            }
+            input[type="text"] {
+                margin: 0 0 10px 0;
+            }
+            input[type="submit"] {
+                width: 100%;
+            }
+            th, td {
+                padding: 6px 8px;
+            }
+            .button {
+                padding: 4px 8px;
+                font-size: 12px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 20px;
+            }
+            th, td {
+                font-size: 14px;
+            }
+            .button {
+                padding: 2px 6px;
+                font-size: 10px;
+            }
         }
     </style>
 </head>

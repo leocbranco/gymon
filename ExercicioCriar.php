@@ -115,16 +115,82 @@
             display: flex;
             justify-content: flex-start;
         }
+
+        .responsive-table {
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .card {
+            padding: 20px;
+            background-color: #2C2C2C;
+            border-radius: 10px;
+        }
+
+        .button {
+            background-color: #329834;
+            color: #fff;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 4px;
+            display: inline-block;
+            margin-top: 20px;
+        }
     </style>
 </head>
 
 <body>
     <?php require 'menu.php'; ?>
     <?php require 'cfg.php'; ?>
+
     <div class="container">
+        <?php
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $nome    = $_POST['Nome'];
+            $ementa = $_POST['Ementa'];
+
+            switch ($_FILES['Imagem']['error']) {
+                case UPLOAD_ERR_OK:
+                    break;
+                case UPLOAD_ERR_NO_FILE:
+                    throw new RuntimeException('No file sent.');
+                case UPLOAD_ERR_INI_SIZE:
+                case UPLOAD_ERR_FORM_SIZE:
+                    throw new RuntimeException('Exceeded filesize limit.');
+                default:
+                    throw new RuntimeException('Unknown errors.');
+            }
+
+            if ($_FILES['Imagem']['size'] == 0) { 
+                $sql = "INSERT INTO Exercicios (Nome_Exercicio, Descricao_Exercicio, FotoBin) VALUES ('$nome','$ementa', NULL)";
+            } else {                        
+                $imagem = addslashes(file_get_contents($_FILES['Imagem']['tmp_name']));
+                $sql = "INSERT INTO Exercicios (Nome_Exercicio, Descricao_Exercicio, FotoBin) VALUES ('$nome','$ementa', '$imagem')";
+            }
+
+            $conn = mysqli_connect($dbHost, $username, $password, $dbname);
+
+            if (!$conn) {
+                echo "<div class='card'>Falha na conexão com o Banco de Dados: " . mysqli_connect_error() . "</div>";
+            } else {
+                mysqli_query($conn, "SET NAMES 'utf8'");
+                mysqli_query($conn, 'SET character_set_connection=utf8');
+                mysqli_query($conn, 'SET character_set_client=utf8');
+                mysqli_query($conn, 'SET character_set_results=utf8');
+
+                if ($result = mysqli_query($conn, $sql)) {
+                    echo "<div class='card'>Um registro adicionado!</div>";
+                } else {
+                    echo "<div class='card'>Erro executando INSERT: " . mysqli_error($conn) . "</div>";
+                }
+                mysqli_close($conn);  
+            }
+            echo '<a href="ExercicioListar.php" class="button">Voltar</a>';
+        } else {
+        ?>
         <div class="form-container">
             <h2>Cadastro de Exercícios</h2>
-            <form action="ExercicioCriar_exe.php" method="post" onsubmit="return check(this.form)" enctype="multipart/form-data">
+            <form action="" method="post" onsubmit="return check(this.form)" enctype="multipart/form-data">
                 <div class="form-group">
                     <label for="nome">Nome:</label>
                     <input id="nome" name="Nome" type="text" title="Nome do exercício" required>
@@ -145,6 +211,7 @@
                 </div>
             </form>
         </div>
+        <?php } ?>
     </div>
 
     <script>

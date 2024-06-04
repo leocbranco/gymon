@@ -78,6 +78,38 @@ $result = $stmt->get_result();
         .button:hover {
             background-color: #007100;
         }
+        @media (max-width: 600px) {
+            .container {
+                padding: 10px;
+            }
+            table, thead, tbody, th, td, tr {
+                display: block;
+            }
+            thead tr {
+                display: none;
+            }
+            tr {
+                margin-bottom: 15px;
+            }
+            td {
+                text-align: right;
+                padding-left: 50%;
+                position: relative;
+            }
+            td::before {
+                content: attr(data-label);
+                position: absolute;
+                left: 10px;
+                width: calc(50% - 20px);
+                text-align: left;
+                white-space: nowrap;
+            }
+            .button {
+                width: 100%;
+                box-sizing: border-box;
+                margin-bottom: 10px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -95,9 +127,9 @@ $result = $stmt->get_result();
             <tbody>
                 <?php while($row = $result->fetch_assoc()): ?>
                 <tr>
-                    <td><?php echo htmlspecialchars($row['Nome_Treino']); ?></td>
-                    <td><?php echo date('d/m/Y', strtotime($row['Data_Treino'])); ?></td>
-                    <td class="actions">
+                    <td data-label="Nome do Treino"><?php echo htmlspecialchars($row['Nome_Treino']); ?></td>
+                    <td data-label="Data do Treino"><?php echo date('d/m/Y', strtotime($row['Data_Treino'])); ?></td>
+                    <td data-label="Ações" class="actions">
                         <a href="view_training_aluno.php?id=<?php echo $row['ID_Treino']; ?>" class="button">Ver Exercícios</a>
                     </td>
                 </tr>

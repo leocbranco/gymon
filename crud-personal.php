@@ -19,7 +19,7 @@
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -30,7 +30,12 @@
             font-family: 'Roboto', sans-serif;
             transition: background-color 0.2s linear, color 0.2s linear;
             background-color: #1C1C1C;
+            color: #ffffff;
+            display: flex;
+            justify-content: center;
             align-items: center;
+            min-height: 100vh;
+            margin: 0;
         }
 
         body.light {
@@ -44,8 +49,9 @@
         }
 
         .container {
+            width: 90%;
             max-width: 800px;
-            margin: 10% auto;
+            margin: 20px auto;
             padding: 20px;
             background-color: #1e1e1e; 
             border-radius: 8px;
@@ -62,18 +68,19 @@
 
         .form-group {
             display: flex;
+            flex-direction: column;
             margin-bottom: 15px;
-            align-items: center;
+            align-items: flex-start;
         }
 
         .form-group label {
-            flex: 0 0 180px;
             font-weight: bold;
             color: inherit;
+            margin-bottom: 5px;
         }
 
         .form-group .value {
-            flex: 1;
+            width: 100%;
             background-color: #333333; 
             padding: 10px;
             border-radius: 5px;
@@ -94,6 +101,7 @@
             transition: background-color 0.3s ease;
             margin: 0 10px;
             text-decoration: none;
+            display: inline-block;
         }
 
         .btn-primary {
@@ -117,6 +125,36 @@
         svg {
             vertical-align: middle;
             margin-right: 5px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+
+            .btn {
+                padding: 8px 16px;
+                font-size: 0.875rem;
+            }
+
+            h2 {
+                font-size: 1.75rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            .btn {
+                padding: 8px 12px;
+                font-size: 0.75rem;
+            }
+
+            .btn-group {
+                margin-top: 20px;
+            }
         }
     </style>
 </head>
@@ -174,6 +212,5 @@
             }
         ?>
     </div>
-    <script src="modo-escuro.js"></script>
 </body>
 </html>

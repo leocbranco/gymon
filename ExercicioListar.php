@@ -16,7 +16,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            min-height: 100vh;
         }
 
         .exercise-list {
@@ -24,13 +24,13 @@
             border-radius: 10px;
             background-color: #2d2d2d;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            width: 80%;
-            max-height: 70vh;
+            width: 90%;
+            max-height: 80vh;
             overflow-y: auto;
         }
 
         h1 {
-            font-size: 36px;
+            font-size: 24px;
             margin-bottom: 20px;
             text-align: center;
         }
@@ -45,12 +45,12 @@
         .exercise-table td {
             padding: 10px;
             border-bottom: 1px solid #333333;
+            text-align: left;
         }
 
         .exercise-table th {
             background-color: #329834;
             color: #ffffff;
-            text-align: left;
         }
 
         .exercise-table td {
@@ -59,7 +59,7 @@
         }
 
         .exercise-table td img {
-            width: 100px;
+            width: 80px;
             height: auto;
             display: block;
             margin: 0 auto;
@@ -67,12 +67,55 @@
 
         .exercise-table td a img {
             vertical-align: middle;
-            width: 40px;
-            height: 40px;
+            width: 20px;
+            height: 20px;
         }
 
         .responsive-table {
             overflow-x: auto;
+        }
+
+        @media (max-width: 768px) {
+            .exercise-list {
+                width: 100%;
+                padding: 10px;
+            }
+
+            .exercise-table th,
+            .exercise-table td {
+                padding: 8px;
+                font-size: 12px;
+            }
+
+            .exercise-table td img {
+                width: 60px;
+            }
+
+            .exercise-table td a img {
+                width: 16px;
+                height: 16px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 20px;
+            }
+
+            .exercise-table th,
+            .exercise-table td {
+                padding: 6px;
+                font-size: 10px;
+            }
+
+            .exercise-table td img {
+                width: 40px;
+            }
+
+            .exercise-table td a img {
+                width: 12px;
+                height: 12px;
+            }
         }
     </style>
 </head>

@@ -1,11 +1,16 @@
 <?php
 session_start();
-if (!isset($_SESSION['id']) || $_SESSION['admin']) {
+if (!isset($_SESSION['id_personal'])) {
     header('Location: login-personal.php');
     exit();
 }
 
 include_once('cfg.php');
+
+if (!isset($_GET['id'])) {
+    header('Location: home-personal.php');
+    exit();
+}
 
 $idTreino = $_GET['id'];
 $sql = "
@@ -24,7 +29,7 @@ $result = $stmt->get_result();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exercícios do Treino</title>
+    <title>GymON</title>
     <link rel="icon" href="assets/logo-gymon.jpeg" type="image/x-icon">
     <style>
         body {
@@ -84,10 +89,53 @@ $result = $stmt->get_result();
             max-width: 100px;
             height: auto;
         }
+        @media (max-width: 768px) {
+            .container {
+                width: 100%;
+                padding: 10px;
+            }
+            table, thead, tbody, th, td, tr {
+                display: block;
+            }
+            thead tr {
+                position: absolute;
+                top: -9999px;
+                left: -9999px;
+            }
+            tr {
+                border: 1px solid #ddd;
+                margin-bottom: 10px;
+            }
+            td {
+                border: none;
+                border-bottom: 1px solid #ddd;
+                position: relative;
+                padding-left: 50%;
+                text-align: left;
+            }
+            td:before {
+                position: absolute;
+                top: 6px;
+                left: 6px;
+                width: 45%;
+                padding-right: 10px;
+                white-space: nowrap;
+                content: attr(data-label);
+                font-weight: bold;
+            }
+        }
+        @media (max-width: 480px) {
+            .button {
+                padding: 5px 10px;
+                font-size: 12px;
+            }
+            h1 {
+                font-size: 20px;
+            }
+        }
     </style>
 </head>
 <body>
-    
     <div class="container">
         <h1>Exercícios do Treino</h1>
         <table>
@@ -103,17 +151,17 @@ $result = $stmt->get_result();
             <tbody>
                 <?php while($row = $result->fetch_assoc()): ?>
                 <tr>
-                    <td><?php echo htmlspecialchars($row['Nome_Exercicio']); ?></td>
-                    <td>
+                    <td data-label="Nome do Exercício"><?php echo htmlspecialchars($row['Nome_Exercicio']); ?></td>
+                    <td data-label="Imagem">
                         <?php if (!empty($row['FotoBin'])): ?>
                             <img src="data:image/jpeg;base64,<?php echo base64_encode($row['FotoBin']); ?>" alt="<?php echo htmlspecialchars($row['Nome_Exercicio']); ?>">
                         <?php else: ?>
                             Sem imagem
                         <?php endif; ?>
                     </td>
-                    <td><?php echo htmlspecialchars($row['Repeticoes']); ?></td>
-                    <td><?php echo htmlspecialchars($row['Series']); ?></td>
-                    <td class="actions">
+                    <td data-label="Repetições"><?php echo htmlspecialchars($row['Repeticoes']); ?></td>
+                    <td data-label="Séries"><?php echo htmlspecialchars($row['Series']); ?></td>
+                    <td data-label="Ações" class="actions">
                         <a href="edit_exercise.php?id=<?php echo $row['ID_Exercicio_Treino']; ?>&id_treino=<?php echo $idTreino; ?>" class="button">Editar</a>
                         <a href="delete_exercise.php?id=<?php echo $row['ID_Exercicio_Treino']; ?>&id_treino=<?php echo $idTreino; ?>" class="button" onclick="return confirm('Tem certeza que deseja excluir este exercício?');">Excluir</a>
                     </td>

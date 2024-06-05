@@ -8,7 +8,7 @@ if (!isset($_SESSION['id'])) {
 
 function verificaAluno($conex, $idAluno) {
     if ($idAluno != $_SESSION['id']) {
-        die('Acesso não autorizado.');
+        header('Location: naoautorizado.php');
     }
 }
 

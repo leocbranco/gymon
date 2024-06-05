@@ -19,19 +19,22 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            flex-wrap: wrap;
             height: 100vh;
+            padding: 20px;
+            padding-top: 80px; 
         }
         .table {
             background-color: rgba(62, 62, 62, 0.7); 
             border-radius: 20px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            padding: 10px;
+            padding: 20px;
             box-sizing: border-box;
-            margin: 0 30px;
+            margin: 20px;
             display: flex;
             flex-direction: column;
-            width: 20%;
-            height: 60%;
+            width: 300px;
+            height: auto;
         }
         .table h2 {
             text-align: center;
@@ -39,12 +42,7 @@
             color: #ffffff;
             font-size: 16px;
         }
-        .description {
-            margin-bottom: 10px;
-            color: #ffffff;
-            font-size: 12px;
-        }
-        .topics {
+        .description, .topics {
             margin-bottom: 10px;
             color: #ffffff;
             font-size: 12px;
@@ -58,12 +56,11 @@
             padding: 5px 0;
         }
         .form-group {
-            margin-bottom: 10px;
             margin-top: auto;
         }
         .form-group button {
             width: 100%;
-            padding: 8px;
+            padding: 10px;
             font-size: 14px;
             background-color: #329834;
             color: #fff;
@@ -90,17 +87,33 @@
             background: var(--white);
             transition: all 0.5s;
             position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
         }
 
         .navigation .logo {
+            display: flex;
+            align-items: center;
             color: var(--red);
             font-size: 1.7rem;
             font-weight: 600;
         }
 
+        .logo img {
+            max-width: 40px;
+            height: auto;
+            vertical-align: middle;
+            margin-right: 10px;
+        }
+
+        .logo span {
+            color: var(--dark);
+        }
+
         .back-button {
             position: fixed;
-            top: 20px;
+            top: 80px;
             right: 20px;
             background-color: #329834;
             color: #fff;
@@ -109,10 +122,33 @@
             padding: 10px 20px;
             font-size: 16px;
             cursor: pointer;
+            z-index: 1001; 
         }
 
         .back-button:hover {
             background-color: #007100;
+        }
+
+        @media (max-width: 600px) {
+            .table {
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .navigation {
+                padding: 10px 20px;
+            }
+
+            .navigation .logo {
+                font-size: 1.5rem;
+            }
+
+            .back-button {
+                padding: 8px 16px;
+                font-size: 14px;
+                top: 70px; 
+                right: 10px;
+            }
         }
     </style>
 </head>
@@ -127,22 +163,16 @@
     </header>
     <div class="container">
         <div class="table">
-            <br>
             <h2>Registro de Conta como Aluno</h2>
-            <br>
             <div class="description">
                 <p>Se você está em busca de um treinador pessoal para te ajudar a alcançar seus objetivos de fitness, registre-se como Aluno e encontre o personal perfeito para você.</p>
             </div>
             <div class="topics">
                 <ul>
                     <li>➜ Encontre o personal ideal para suas necessidades</li>
-                    <br>
                     <li>➜ Agende treinos personalizados</li>
-                    <br>
                     <li>➜ Acompanhe seu progresso de forma fácil</li>
-                    <br>
                     <li>➜ Conecte-se com outros alunos</li>
-                    <br>
                     <li>➜ Explore uma variedade de modalidades de treino</li>
                 </ul>
             </div>
@@ -151,22 +181,16 @@
             </div>
         </div>
         <div class="table">
-            <br>
             <h2>Registro de Conta como Personal</h2>
-            <br>
             <div class="description">
                 <p>Se você é um profissional de saúde ou fitness, registre-se como Personal e comece a ajudar seus clientes a atingirem seus objetivos.</p>
             </div>
             <div class="topics">
                 <ul>
                     <li>➜ Crie perfis personalizados para seus clientes</li>
-                    <br>
                     <li>➜ Elabore treinos adaptados às necessidades individuais</li>
-                    <br>
                     <li>➜ Compartilhe dicas e recursos de saúde e fitness</li>
-                    <br>
                     <li>➜ Agende sessões de treino com facilidade</li>
-                    <br>
                     <li>➜ Acompanhe o progresso de seus clientes de forma eficaz</li>
                 </ul>
             </div>
@@ -175,7 +199,6 @@
             </div>
         </div>
     </div>
-    <!-- Botão de voltar -->
     <a href="home.php" class="back-button">Voltar</a>
 </body>
 </html>

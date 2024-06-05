@@ -26,7 +26,9 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            flex-wrap: wrap;
             height: 100vh;
+            padding: 20px;
         }
         .table {
             background-color: rgba(62, 62, 62, 0.7); 
@@ -34,11 +36,11 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             padding: 20px;
             box-sizing: border-box;
-            margin: 0 20px;
+            margin: 20px;
             display: flex;
             flex-direction: column;
-            width: 40%;
-            max-width: 350px;
+            width: 300px;
+            height: auto;
         }
         .table h2 {
             text-align: center;
@@ -79,17 +81,33 @@
             background: var(--white);
             transition: all 0.5s;
             position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
         }
 
         .navigation .logo {
+            display: flex;
+            align-items: center;
             color: var(--red);
             font-size: 1.7rem;
             font-weight: 600;
         }
 
+        .logo img {
+            max-width: 40px;
+            height: auto;
+            vertical-align: middle;
+            margin-right: 10px;
+        }
+
+        .logo span {
+            color: var(--dark);
+        }
+
         .back-button {
             position: fixed;
-            top: 20px;
+            top: 80px; 
             right: 20px;
             background-color: #329834;
             color: #fff;
@@ -98,10 +116,33 @@
             padding: 10px 20px;
             font-size: 16px;
             cursor: pointer;
+            z-index: 1001; 
         }
 
         .back-button:hover {
             background-color: #007100;
+        }
+
+        @media (max-width: 600px) {
+            .table {
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .navigation {
+                padding: 10px 20px;
+            }
+
+            .navigation .logo {
+                font-size: 1.5rem;
+            }
+
+            .back-button {
+                padding: 8px 16px;
+                font-size: 14px;
+                top: 70px; 
+                right: 10px;
+            }
         }
     </style>
 </head>

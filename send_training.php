@@ -1,6 +1,8 @@
 <?php
-session_start();
-if (!isset($_SESSION['id']) || $_SESSION['admin']) {
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+if (!isset($_SESSION['id_personal']) || $_SESSION['admin']) {
     header('Location: login-personal.php');
     exit();
 }
@@ -81,7 +83,7 @@ $resultExercicios = $conex->query($sqlExercicios);
             color: #329834;
         }
         .button {
-            background-color: #1E90FF;
+            background-color: #329834;
             color: white;
             padding: 10px 20px;
             text-decoration: none;
@@ -90,7 +92,7 @@ $resultExercicios = $conex->query($sqlExercicios);
             display: inline-block;
         }
         .button:hover {
-            background-color: #0056b3;
+            background-color: #007100;
         }
         .form-group {
             margin-bottom: 15px;
@@ -123,7 +125,7 @@ $resultExercicios = $conex->query($sqlExercicios);
         }
         .add-exercise {
             margin-top: 20px;
-            background-color: #1E90FF;
+            background-color: #329834;
             color: white;
             padding: 10px 20px;
             text-decoration: none;
@@ -132,7 +134,7 @@ $resultExercicios = $conex->query($sqlExercicios);
             display: inline-block;
         }
         .add-exercise:hover {
-            background-color: #0056b3;
+            background-color: #007100;
         }
     </style>
     <script>
@@ -165,6 +167,7 @@ $resultExercicios = $conex->query($sqlExercicios);
     </script>
 </head>
 <body>
+    <?php include 'menu.php'; ?>
     <div class="container">
         <h1>Enviar Treino para <?php echo htmlspecialchars($aluno['Nome_Aluno']); ?></h1>
         <form method="POST" action="">

@@ -7,20 +7,24 @@ if (isset($_POST['register'])) {
     $nome = $_POST['nome'];
     $email = $_POST['email'];
     $senha = $_POST['senha'];
+    $confirma_senha = $_POST['confirma_senha'];
     $CPF = $_POST['cpf'];
     $genero = $_POST['genero'];
     $data_nasc = $_POST['data_nasc'];
 
-    // Remove pontos e traços do CPF
+    // Verificar se as senhas coincidem
+    if ($senha !== $confirma_senha) {
+        echo "<script>alert('As senhas não coincidem. Por favor, tente novamente.'); window.location.href='registro-aluno.php';</script>";
+        exit();
+    }
+
     $CPF = preg_replace('/[^0-9]/', '', $CPF);
 
-    // Valida CPF
     if (!validaCPF($CPF)) {
         echo "<script>alert('CPF inválido. Por favor, insira um CPF válido.'); window.location.href='registro-aluno.php';</script>";
         exit();
     }
 
-    // Verifica se o email já está em uso
     $stmt = $conex->prepare("SELECT * FROM Aluno WHERE Email_Aluno = ?");
     $stmt->bind_param("s", $email);
     $stmt->execute();
@@ -30,7 +34,6 @@ if (isset($_POST['register'])) {
         exit();
     }
 
-    // Verifica se o CPF já está em uso
     $stmt = $conex->prepare("SELECT * FROM Aluno WHERE CPF_Aluno = ?");
     $stmt->bind_param("s", $CPF);
     $stmt->execute();
@@ -40,7 +43,6 @@ if (isset($_POST['register'])) {
         exit();
     }
 
-    // Insere novo aluno no banco de dados
     $stmt = $conex->prepare("INSERT INTO Aluno (Nome_Aluno, Email_Aluno, Senha_Aluno, CPF_Aluno, Genero_Aluno, DataNasc_Aluno) VALUES (?, ?, ?, ?, ?, ?)");
     $stmt->bind_param("ssssss", $nome, $email, $senha, $CPF, $genero, $data_nasc);
     $result = $stmt->execute();
@@ -53,9 +55,6 @@ if (isset($_POST['register'])) {
     }
 }
 ?>
-
-
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -90,6 +89,7 @@ if (isset($_POST['register'])) {
             <input type="text" name="nome" id="nome" placeholder="Nome:" class="register-input" required pattern=".+ .+" title="Nome e Sobrenomes">
             <input type="email" name="email" id="email" placeholder="Email:" class="register-input" required pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}\.com" title="Formato válido: usuario@dominio.com">
             <input type="password" name="senha" id="senha" placeholder="Senha:" class="register-input" required pattern=".{8,}" title="Mínimo de 8 caracteres">
+            <input type="password" name="confirma_senha" id="confirma_senha" placeholder="Confirme a Senha:" class="register-input" required pattern=".{8,}" title="Mínimo de 8 caracteres">
             <input type="text" name="cpf" id="cpf" placeholder="CPF:" class="register-input" required pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" title="Formato válido: XXX.XXX.XXX-XX" maxlength="14">
             <div class="gender-container">
                 <select name="genero" id="genero" class="register-input" required>

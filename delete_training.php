@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (!isset($_SESSION['id']) || $_SESSION['admin']) {
+if (!isset($_SESSION['id_personal'])) {
     header('Location: login-personal.php');
     exit();
 }

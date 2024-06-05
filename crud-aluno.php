@@ -23,14 +23,18 @@ $result = $stmt->get_result();
             font-family: 'Roboto', sans-serif;
             transition: background-color 0.2s linear, color 0.2s linear;
             background-color: #1C1C1C;
+            color: #ffffff;
+            display: flex;
+            justify-content: center;
             align-items: center;
+            min-height: 100vh;
             margin: 0;
-            padding: 0;
         }
 
         .container {
+            width: 90%;
             max-width: 800px;
-            margin: 10% auto;
+            margin: 20px auto;
             padding: 20px;
             background-color: #1e1e1e; 
             border-radius: 8px;
@@ -47,18 +51,19 @@ $result = $stmt->get_result();
 
         .form-group {
             display: flex;
+            flex-direction: column;
             margin-bottom: 15px;
-            align-items: center;
+            align-items: flex-start;
         }
 
         .form-group label {
-            flex: 0 0 180px;
             font-weight: bold;
             color: inherit;
+            margin-bottom: 5px;
         }
 
         .form-group .value {
-            flex: 1;
+            width: 100%;
             background-color: #333333; 
             padding: 10px;
             border-radius: 5px;
@@ -79,6 +84,7 @@ $result = $stmt->get_result();
             transition: background-color 0.3s ease;
             margin: 0 10px;
             text-decoration: none;
+            display: inline-block;
         }
 
         .btn-primary {
@@ -103,7 +109,44 @@ $result = $stmt->get_result();
             vertical-align: middle;
             margin-right: 5px;
         }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+
+            .btn {
+                padding: 8px 16px;
+                font-size: 0.875rem;
+            }
+
+            h2 {
+                font-size: 1.75rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            .btn {
+                padding: 8px 12px;
+                font-size: 0.75rem;
+            }
+
+            .btn-group {
+                margin-top: 20px;
+            }
+        }
     </style>
+    <script>
+        function confirmDeletion(id) {
+            if (confirm("Você realmente deseja excluir esta conta?")) {
+                window.location.href = 'excluir-aluno.php?ID_Aluno=' + id;
+            }
+        }
+    </script>
 </head>
 <body>
     <?php require 'menu-aluno.php'; ?>
@@ -148,7 +191,7 @@ $result = $stmt->get_result();
                     echo "<path d='M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z'/>";
                     echo "<path fill-rule='evenodd' d='M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z'/>";
                     echo "</svg> Editar</a>";
-                    echo "<a class='btn btn-danger' href='excluir-aluno.php?ID_Aluno=" . $user_data['ID_Aluno'] . "'>";
+                    echo "<a class='btn btn-danger' href='#' onclick='confirmDeletion(" . $user_data['ID_Aluno'] . ")'>";
                     echo "<svg width='16' height='16' fill='currentColor' class='bi bi-trash-fill' viewBox='0 0 16 16'>";
                     echo "<path d='M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z'/>";
                     echo "</svg> Excluir</a>";

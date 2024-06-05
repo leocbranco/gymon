@@ -2,15 +2,44 @@
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
-if (!isset($_SESSION['id']) || $_SESSION['admin']) {
+if (!isset($_SESSION['id_personal'])) {
     header('Location: login-personal.php');
     exit();
 }
 
 include_once('cfg.php');
+require 'personal_auth.php';
 
-$sql = "SELECT * FROM Aluno";
-$result = $conex->query($sql);
+$id_personal = $_SESSION['id_personal'];
+verificaPersonal($conex, $id_personal);
+
+$sql_status = "SELECT Status_Personal FROM Personal WHERE ID_Personal = ?";
+$stmt = $conex->prepare($sql_status);
+$stmt->bind_param('i', $id_personal);
+$stmt->execute();
+$stmt->bind_result($status_personal);
+$stmt->fetch();
+$stmt->close();
+
+if ($status_personal == 0) {
+    header('Location: acesso-negado.php');
+    exit();
+}
+
+$search = '';
+if (isset($_GET['search'])) {
+    $search = $_GET['search'];
+    $sql = "SELECT * FROM Aluno WHERE Nome_Aluno LIKE ?";
+    $stmt = $conex->prepare($sql);
+    $search_param = '%' . $search . '%';
+    $stmt->bind_param('s', $search_param);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $stmt->close();
+} else {
+    $sql = "SELECT * FROM Aluno";
+    $result = $conex->query($sql);
+}
 ?>
 
 <!DOCTYPE html>
@@ -49,10 +78,36 @@ $result = $conex->query($sql);
             font-size: 24px;
             transition: color 0.2s linear;
         }
+        form {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        input[type="text"] {
+            padding: 8px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-right: 10px;
+        }
+        input[type="submit"] {
+            background-color: #329834;
+            color: white;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+        input[type="submit"]:hover {
+            background-color: #007100;
+        }
         table {
             width: 100%;
             border-collapse: collapse;
             margin-bottom: 20px;
+            overflow-x: auto;
         }
         th, td {
             padding: 8px 12px;
@@ -82,15 +137,61 @@ $result = $conex->query($sql);
             transition: background-color 0.3s ease;
             font-size: 14px;
             margin-right: 5px;
+            display: inline-block;
         }
         .button:hover {
-            background-color: #0056b3;
+            background-color: #007100;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            table {
+                display: block;
+                overflow-x: auto;
+                white-space: nowrap;
+            }
+            form {
+                flex-direction: column;
+                align-items: center;
+            }
+            input[type="text"] {
+                margin: 0 0 10px 0;
+            }
+            input[type="submit"] {
+                width: 100%;
+            }
+            th, td {
+                padding: 6px 8px;
+            }
+            .button {
+                padding: 4px 8px;
+                font-size: 12px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 20px;
+            }
+            th, td {
+                font-size: 14px;
+            }
+            .button {
+                padding: 2px 6px;
+                font-size: 10px;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Alunos Cadastrados</h1>
+        <form method="get" action="">
+            <input type="text" name="search" value="<?php echo htmlspecialchars($search); ?>" placeholder="Pesquisar aluno pelo nome">
+            <input type="submit" value="Pesquisar">
+        </form>
         <table>
             <thead>
                 <tr>
@@ -120,6 +221,5 @@ $result = $conex->query($sql);
         </table>
     </div>
     <?php require 'menu.php'; ?>
-    <script src="modoescuro/modo-escuro.js"></script>
 </body>
 </html>

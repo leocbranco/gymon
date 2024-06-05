@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (!isset($_SESSION['id']) || $_SESSION['admin']) {
+if (!isset($_SESSION['id_personal'])) {
     header('Location: login-personal.php');
     exit();
 }
@@ -25,6 +25,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         echo "Erro ao editar exercício.";
     }
 } else {
+    if (!isset($_GET['id'])) {
+        die('Parâmetro id inválido.');
+    }
+
     $idExercicioTreino = $_GET['id'];
     $sql = "SELECT * FROM Exercicios_Treino WHERE ID_Exercicio_Treino = ?";
     $stmt = $conex->prepare($sql);
@@ -32,6 +36,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $stmt->execute();
     $result = $stmt->get_result();
     $exercicioTreino = $result->fetch_assoc();
+
+    if (!$exercicioTreino) {
+        die('Exercício não encontrado.');
+    }
 }
 
 $sqlExercicios = "SELECT * FROM Exercicios";

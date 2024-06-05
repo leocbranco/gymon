@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (!isset($_SESSION['id']) || $_SESSION['admin']) {
+if (!isset($_SESSION['id_personal'])) {
     header('Location: login-personal.php');
     exit();
 }
@@ -9,9 +9,24 @@ include_once('cfg.php');
 
 if (!isset($_GET['id'])) {
     header('Location: home-personal.php');
+    exit();
 }
 
 $idAluno = $_GET['id'];
+
+$sqlAluno = "SELECT Nome_Aluno FROM Aluno WHERE ID_Aluno = ?";
+$stmtAluno = $conex->prepare($sqlAluno);
+$stmtAluno->bind_param("i", $idAluno);
+$stmtAluno->execute();
+$resultAluno = $stmtAluno->get_result();
+
+if ($resultAluno->num_rows > 0) {
+    $aluno = $resultAluno->fetch_assoc();
+    $nomeAluno = $aluno['Nome_Aluno'];
+} else {
+    $nomeAluno = "Aluno não encontrado";
+}
+
 $sql = "
     SELECT Treinos.ID_Treino, Treinos.Nome_Treino, Treinos.Data_Treino 
     FROM Treinos 
@@ -27,7 +42,7 @@ $result = $stmt->get_result();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Treinos do Aluno</title>
+    <title>GymON</title>
     <link rel="icon" href="assets/logo-gymon.jpeg" type="image/x-icon">
     <style>
         body {
@@ -73,7 +88,7 @@ $result = $stmt->get_result();
             margin: 0 5px;
         }
         .button {
-            background-color: #1E90FF;
+            background-color: #329834;
             color: white;
             padding: 10px 20px;
             text-decoration: none;
@@ -81,17 +96,60 @@ $result = $stmt->get_result();
             margin-top: 10px;
         }
         .button:hover {
-            background-color: #0056b3;
+            background-color: #007100;
+        }
+        @media (max-width: 768px) {
+            .container {
+                width: 100%;
+                padding: 10px;
+            }
+            table, thead, tbody, th, td, tr {
+                display: block;
+            }
+            thead tr {
+                position: absolute;
+                top: -9999px;
+                left: -9999px;
+            }
+            tr {
+                border: 1px solid #ddd;
+                margin-bottom: 10px;
+            }
+            td {
+                border: none;
+                border-bottom: 1px solid #ddd;
+                position: relative;
+                padding-left: 50%;
+                text-align: left;
+            }
+            td:before {
+                position: absolute;
+                top: 6px;
+                left: 6px;
+                width: 45%;
+                padding-right: 10px;
+                white-space: nowrap;
+                content: attr(data-label);
+                font-weight: bold;
+            }
+        }
+        @media (max-width: 480px) {
+            .button {
+                padding: 5px 10px;
+                font-size: 12px;
+            }
+            h1 {
+                font-size: 20px;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Treinos do Aluno</h1>
+        <h1>Treinos do Aluno: <?php echo htmlspecialchars($nomeAluno, ENT_QUOTES, 'UTF-8'); ?></h1>
         <table>
             <thead>
                 <tr>
-                    <th>ID Treino</th>
                     <th>Nome do Treino</th>
                     <th>Data do Treino</th>
                     <th>Ações</th>
@@ -100,19 +158,17 @@ $result = $stmt->get_result();
             <tbody>
                 <?php while($row = $result->fetch_assoc()): ?>
                 <tr>
-                    <td><?php echo htmlspecialchars($row['ID_Treino']); ?></td>
-                    <td><?php echo htmlspecialchars($row['Nome_Treino']); ?></td>
-                    <td><?php echo htmlspecialchars($row['Data_Treino']); ?></td>
-                    <td class="actions">
-                        <a href="view_training.php?id=<?php echo $row['ID_Treino']; ?>&id_aluno=<?php echo $idAluno; ?>" class="button">Ver Exercícios</a>
-                        <a href="edit_training.php?id=<?php echo $row['ID_Treino']; ?>&id_aluno=<?php echo $idAluno; ?>" class="button">Editar</a>
-                        <a href="delete_training.php?id=<?php echo $row['ID_Treino']; ?>&id_aluno=<?php echo $idAluno; ?>" class="button" onclick="return confirm('Tem certeza que deseja excluir este treino?');">Excluir</a>
+                    <td data-label="Nome do Treino"><?php echo htmlspecialchars($row['Nome_Treino'], ENT_QUOTES, 'UTF-8'); ?></td>
+                    <td data-label="Data do Treino"><?php echo date("d/m/Y", strtotime(htmlspecialchars($row['Data_Treino'], ENT_QUOTES, 'UTF-8'))); ?></td>
+                    <td data-label="Ações" class="actions">
+                        <a href="view_training.php?id=<?php echo htmlspecialchars($row['ID_Treino'], ENT_QUOTES, 'UTF-8'); ?>&id_aluno=<?php echo htmlspecialchars($idAluno, ENT_QUOTES, 'UTF-8'); ?>" class="button">Ver Exercícios</a>
+                        <a href="delete_training.php?id=<?php echo htmlspecialchars($row['ID_Treino'], ENT_QUOTES, 'UTF-8'); ?>&id_aluno=<?php echo htmlspecialchars($idAluno, ENT_QUOTES, 'UTF-8'); ?>" class="button" onclick="return confirm('Tem certeza que deseja excluir este treino?');">Excluir</a>
                     </td>
                 </tr>
                 <?php endwhile; ?>
             </tbody>
         </table>
-        <a href="send_training.php?id=<?php echo $idAluno; ?>" class="button">Adicionar Treino</a>
+        <a href="send_training.php?id=<?php echo htmlspecialchars($idAluno, ENT_QUOTES, 'UTF-8'); ?>" class="button">Adicionar Treino</a>
     </div>
     <?php require 'menu.php'; ?>
 </body>

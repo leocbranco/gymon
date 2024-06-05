@@ -1,21 +1,21 @@
 <?php
-    session_start();
-    include_once('cfg.php');
+session_start();
+include_once('cfg.php');
 
-    if (!isset($_SESSION['email']) || !isset($_SESSION['senha'])) {
-        header('Location: login-personal.php');
-        exit; 
-    }
+if (!isset($_SESSION['email']) || !isset($_SESSION['senha'])) {
+    header('Location: login-personal.php');
+    exit; 
+}
 
-    $email_personal_logado = $_SESSION['email'];
+$email_personal_logado = $_SESSION['email'];
 
-    $sql = "SELECT * FROM Personal WHERE Email_Personal = '$email_personal_logado'";
+$sql = "SELECT * FROM Personal WHERE Email_Personal = '$email_personal_logado'";
 
-    $result = $conex->query($sql);
+$result = $conex->query($sql);
 
-    if (!$result) {
-        die("Erro na consulta ao banco de dados: " . $conex->error);
-    }
+if (!$result) {
+    die("Erro na consulta ao banco de dados: " . $conex->error);
+}
 ?>
 
 <!DOCTYPE html>
@@ -157,6 +157,13 @@
             }
         }
     </style>
+    <script>
+        function confirmDeletion(id) {
+            if (confirm("Você realmente deseja excluir esta conta?")) {
+                window.location.href = 'excluir-personal.php?ID_Personal=' + id;
+            }
+        }
+    </script>
 </head>
 <body>
     <?php require 'menu.php'; ?>
@@ -199,9 +206,9 @@
                     echo "<a class='btn btn-primary' href='editar-personal.php?ID_Personal=" . $user_data['ID_Personal'] . "'>";
                     echo "<svg width='16' height='16' fill='currentColor' class='bi bi-pencil-square' viewBox='0 0 16 16'>";
                     echo "<path d='M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z'/>";
-                    echo "10a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z'/>";
+                    echo "<path fill-rule='evenodd' d='M1 13.5V2.5A1.5 1.5 0 0 1 2.5 1h11a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z'/>";
                     echo "</svg> Editar</a>";
-                    echo "<a class='btn btn-danger' href='excluir-personal.php?ID_Personal=" . $user_data['ID_Personal'] . "'>";
+                    echo "<a class='btn btn-danger' href='#' onclick='confirmDeletion(" . $user_data['ID_Personal'] . ")'>";
                     echo "<svg width='16' height='16' fill='currentColor' class='bi bi-trash-fill' viewBox='0 0 16 16'>";
                     echo "<path d='M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z'/>";
                     echo "</svg> Excluir</a>";

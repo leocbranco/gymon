@@ -7,9 +7,16 @@ if (isset($_POST['register'])) {
     $nome = $_POST['nome'];
     $email = $_POST['email'];
     $senha = $_POST['senha'];
+    $confirma_senha = $_POST['confirma_senha'];
     $CPF = $_POST['cpf'];
     $genero = $_POST['genero'];
     $data_nasc = $_POST['data_nasc'];
+
+    // Verificar se as senhas coincidem
+    if ($senha !== $confirma_senha) {
+        echo "<script>alert('As senhas não coincidem. Por favor, tente novamente.'); window.location.href='registro-personal.php';</script>";
+        exit();
+    }
 
     $CPF = preg_replace('/[^0-9]/', '', $CPF);
 
@@ -36,30 +43,31 @@ if (isset($_POST['register'])) {
         exit();
     }
 
-    if ($_FILES['cref']['error'] == UPLOAD_ERR_OK) {
-        $upload_dir = 'uploads/'; 
-        if (!is_dir($upload_dir)) {
-            mkdir($upload_dir, 0777, true);
-        }
+    // Verificar se um arquivo foi enviado
+    if (!isset($_FILES['cref']) || $_FILES['cref']['error'] != UPLOAD_ERR_OK) {
+        echo "<script>alert('Por favor, selecione o arquivo CREF em formato PDF.'); window.location.href='registro-personal.php';</script>";
+        exit();
+    }
 
-        $cref_file = $_FILES['cref']['name'];
-        $cref_file_tmp = $_FILES['cref']['tmp_name'];
-        $cref_file_ext = strtolower(pathinfo($cref_file, PATHINFO_EXTENSION));
+    $upload_dir = 'uploads/';
+    if (!is_dir($upload_dir)) {
+        mkdir($upload_dir, 0777, true);
+    }
 
-        if ($cref_file_ext != 'pdf') {
-            echo "<script>alert('Por favor, faça o upload de um arquivo PDF.'); window.location.href='registro-personal.php';</script>";
-            exit();
-        }
+    $cref_file = $_FILES['cref']['name'];
+    $cref_file_tmp = $_FILES['cref']['tmp_name'];
+    $cref_file_ext = strtolower(pathinfo($cref_file, PATHINFO_EXTENSION));
 
-        $cref_file_new = uniqid() . '.' . $cref_file_ext; 
-        $cref_file_path = $upload_dir . $cref_file_new;
+    if ($cref_file_ext != 'pdf') {
+        echo "<script>alert('Por favor, faça o upload de um arquivo PDF.'); window.location.href='registro-personal.php';</script>";
+        exit();
+    }
 
-        if (!move_uploaded_file($cref_file_tmp, $cref_file_path)) {
-            echo "<script>alert('Erro ao fazer upload do arquivo. Por favor, tente novamente.'); window.location.href='registro-personal.php';</script>";
-            exit();
-        }
-    } else {
-        echo "<script>alert('Erro ao fazer upload do arquivo. Código de erro: " . $_FILES['cref']['error'] . "'); window.location.href='registro-personal.php';</script>";
+    $cref_file_new = uniqid() . '.' . $cref_file_ext;
+    $cref_file_path = $upload_dir . $cref_file_new;
+
+    if (!move_uploaded_file($cref_file_tmp, $cref_file_path)) {
+        echo "<script>alert('Erro ao fazer upload do arquivo. Por favor, tente novamente.'); window.location.href='registro-personal.php';</script>";
         exit();
     }
 
@@ -109,6 +117,7 @@ if (isset($_POST['register'])) {
                 <input type="text" name="nome" id="nome" placeholder="Nome:" class="register-input" required pattern=".+ .+" title="Nome e Sobrenomes">
                 <input type="email" name="email" id="email" placeholder="Email:" class="register-input" required pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}\.com" title="Formato válido: usuario@dominio.com">
                 <input type="password" name="senha" id="senha" placeholder="Senha:" class="register-input" required pattern=".{8,}" title="Mínimo de 8 caracteres">
+                <input type="password" name="confirma_senha" id="confirma_senha" placeholder="Confirme a Senha:" class="register-input" required pattern=".{8,}" title="Mínimo de 8 caracteres">
                 <input type="text" name="cpf" id="cpf" placeholder="CPF:" class="register-input" required pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" title="Formato válido: XXX.XXX.XXX-XX" maxlength="14">
                 <div class="gender-container">
                     <select name="genero" id="genero" class="register-input" required>
@@ -145,6 +154,14 @@ if (isset($_POST['register'])) {
             var fileName = this.files[0].name;
             var label = document.querySelector('.file-upload-button');
             label.textContent = fileName;
+        });
+
+        document.getElementById('registerForm').addEventListener('submit', function(e) {
+            var crefInput = document.getElementById('crefFileInput');
+            if (crefInput.files.length == 0) {
+                alert('Por favor, selecione o arquivo CREF em formato PDF.');
+                e.preventDefault(); // Evitar o envio do formulário
+            }
         });
     </script>
 </body>

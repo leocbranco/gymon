@@ -12,7 +12,6 @@ if (isset($_POST['register'])) {
     $genero = $_POST['genero'];
     $data_nasc = $_POST['data_nasc'];
 
-    // Verificar se as senhas coincidem
     if ($senha !== $confirma_senha) {
         echo "<script>alert('As senhas não coincidem. Por favor, tente novamente.'); window.location.href='registro-personal.php';</script>";
         exit();
@@ -43,7 +42,6 @@ if (isset($_POST['register'])) {
         exit();
     }
 
-    // Verificar se um arquivo foi enviado
     if (!isset($_FILES['cref']) || $_FILES['cref']['error'] != UPLOAD_ERR_OK) {
         echo "<script>alert('Por favor, selecione o arquivo CREF em formato PDF.'); window.location.href='registro-personal.php';</script>";
         exit();
@@ -160,7 +158,7 @@ if (isset($_POST['register'])) {
             var crefInput = document.getElementById('crefFileInput');
             if (crefInput.files.length == 0) {
                 alert('Por favor, selecione o arquivo CREF em formato PDF.');
-                e.preventDefault(); // Evitar o envio do formulário
+                e.preventDefault(); 
             }
         });
     </script>

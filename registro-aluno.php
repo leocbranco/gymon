@@ -12,7 +12,6 @@ if (isset($_POST['register'])) {
     $genero = $_POST['genero'];
     $data_nasc = $_POST['data_nasc'];
 
-    // Verificar se as senhas coincidem
     if ($senha !== $confirma_senha) {
         echo "<script>alert('As senhas não coincidem. Por favor, tente novamente.'); window.location.href='registro-aluno.php';</script>";
         exit();

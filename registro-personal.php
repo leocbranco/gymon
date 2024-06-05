@@ -7,9 +7,16 @@ if (isset($_POST['register'])) {
     $nome = $_POST['nome'];
     $email = $_POST['email'];
     $senha = $_POST['senha'];
+    $confirma_senha = $_POST['confirma_senha'];
     $CPF = $_POST['cpf'];
     $genero = $_POST['genero'];
     $data_nasc = $_POST['data_nasc'];
+
+    // Verificar se as senhas coincidem
+    if ($senha !== $confirma_senha) {
+        echo "<script>alert('As senhas não coincidem. Por favor, tente novamente.'); window.location.href='registro-personal.php';</script>";
+        exit();
+    }
 
     $CPF = preg_replace('/[^0-9]/', '', $CPF);
 
@@ -109,6 +116,7 @@ if (isset($_POST['register'])) {
                 <input type="text" name="nome" id="nome" placeholder="Nome:" class="register-input" required pattern=".+ .+" title="Nome e Sobrenomes">
                 <input type="email" name="email" id="email" placeholder="Email:" class="register-input" required pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}\.com" title="Formato válido: usuario@dominio.com">
                 <input type="password" name="senha" id="senha" placeholder="Senha:" class="register-input" required pattern=".{8,}" title="Mínimo de 8 caracteres">
+                <input type="password" name="confirma_senha" id="confirma_senha" placeholder="Confirme a Senha:" class="register-input" required pattern=".{8,}" title="Mínimo de 8 caracteres">
                 <input type="text" name="cpf" id="cpf" placeholder="CPF:" class="register-input" required pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" title="Formato válido: XXX.XXX.XXX-XX" maxlength="14">
                 <div class="gender-container">
                     <select name="genero" id="genero" class="register-input" required>

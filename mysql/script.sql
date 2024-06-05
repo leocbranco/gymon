@@ -65,4 +65,5 @@ UPDATE Personal SET EhAdmin = TRUE WHERE Email_Personal = 'admin@gmail.com';
 SET SQL_SAFE_UPDATES = 1;
 
 SELECT * FROM Personal WHERE Email_Personal = 'admin@gmail.com';
-ALTER TABLE Personal ADD COLUMN EhAdmin BOOLEAN DEFAULT FALSE;
+
+ALTER TABLE Personal MODIFY CREF_Personal VARCHAR(255);

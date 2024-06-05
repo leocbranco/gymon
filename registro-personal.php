@@ -36,8 +36,35 @@ if (isset($_POST['register'])) {
         exit();
     }
 
-    $stmt = $conex->prepare("INSERT INTO Personal (Nome_Personal, Email_Personal, Senha_Personal, CPF_Personal, Genero_Personal, DataNasc_Personal) VALUES (?, ?, ?, ?, ?, ?)");
-    $stmt->bind_param("ssssss", $nome, $email, $senha, $CPF, $genero, $data_nasc);
+    if ($_FILES['cref']['error'] == UPLOAD_ERR_OK) {
+        $upload_dir = 'uploads/'; 
+        if (!is_dir($upload_dir)) {
+            mkdir($upload_dir, 0777, true);
+        }
+
+        $cref_file = $_FILES['cref']['name'];
+        $cref_file_tmp = $_FILES['cref']['tmp_name'];
+        $cref_file_ext = strtolower(pathinfo($cref_file, PATHINFO_EXTENSION));
+
+        if ($cref_file_ext != 'pdf') {
+            echo "<script>alert('Por favor, faça o upload de um arquivo PDF.'); window.location.href='registro-personal.php';</script>";
+            exit();
+        }
+
+        $cref_file_new = uniqid() . '.' . $cref_file_ext; 
+        $cref_file_path = $upload_dir . $cref_file_new;
+
+        if (!move_uploaded_file($cref_file_tmp, $cref_file_path)) {
+            echo "<script>alert('Erro ao fazer upload do arquivo. Por favor, tente novamente.'); window.location.href='registro-personal.php';</script>";
+            exit();
+        }
+    } else {
+        echo "<script>alert('Erro ao fazer upload do arquivo. Código de erro: " . $_FILES['cref']['error'] . "'); window.location.href='registro-personal.php';</script>";
+        exit();
+    }
+
+    $stmt = $conex->prepare("INSERT INTO Personal (Nome_Personal, Email_Personal, Senha_Personal, CPF_Personal, Genero_Personal, DataNasc_Personal, CREF_Personal) VALUES (?, ?, ?, ?, ?, ?, ?)");
+    $stmt->bind_param("sssssss", $nome, $email, $senha, $CPF, $genero, $data_nasc, $cref_file_path);
     $result = $stmt->execute();
 
     if ($result) {
@@ -78,7 +105,7 @@ if (isset($_POST['register'])) {
             <h2>Registro Personal GymON</h2>
             <p class="register-intro">É um prazer recebê-lo(a) aqui. Estamos empolgados em tê-lo(a) aqui! Ao se registrar, você <br>
                 está dando o primeiro passo em direção a uma jornada de transformação pessoal e conquistas.</p>
-            <form id="registerForm" method="POST" action="registro-personal.php">
+            <form id="registerForm" method="POST" action="registro-personal.php" enctype="multipart/form-data">
                 <input type="text" name="nome" id="nome" placeholder="Nome:" class="register-input" required pattern=".+ .+" title="Nome e Sobrenomes">
                 <input type="email" name="email" id="email" placeholder="Email:" class="register-input" required pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}\.com" title="Formato válido: usuario@dominio.com">
                 <input type="password" name="senha" id="senha" placeholder="Senha:" class="register-input" required pattern=".{8,}" title="Mínimo de 8 caracteres">
@@ -94,7 +121,7 @@ if (isset($_POST['register'])) {
                 <input type="date" name="data_nasc" id="data_nasc" placeholder="Data de Nascimento:" class="register-input" required min="1900-01-01" max="<?php echo date('Y-m-d'); ?>">
                 <div class="file-upload-container">
                     <label for="crefFileInput" class="file-upload-button">Selecionar CREF</label>
-                    <input type="file" id="crefFileInput" name="cref" accept=".pdf" style="display: none;">
+                    <input type="file" id="crefFileInput" name="cref" accept=".pdf" style="display: none;" required>
                 </div>
                 <br>
                 <hr class="line-separator">

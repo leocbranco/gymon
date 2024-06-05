@@ -28,7 +28,7 @@ $result = $stmt->get_result();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Treinos do Aluno</title>
+    <title>GymON</title>
     <link rel="icon" href="assets/logo-gymon.jpeg" type="image/x-icon">
     <style>
         body {
@@ -145,7 +145,7 @@ $result = $stmt->get_result();
                 <?php while($row = $result->fetch_assoc()): ?>
                 <tr>
                     <td data-label="Nome do Treino"><?php echo htmlspecialchars($row['Nome_Treino'], ENT_QUOTES, 'UTF-8'); ?></td>
-                    <td data-label="Data do Treino"><?php echo htmlspecialchars($row['Data_Treino'], ENT_QUOTES, 'UTF-8'); ?></td>
+                    <td data-label="Data do Treino"><?php echo date("d/m/Y", strtotime(htmlspecialchars($row['Data_Treino'], ENT_QUOTES, 'UTF-8'))); ?></td>
                     <td data-label="Ações" class="actions">
                         <a href="view_training.php?id=<?php echo htmlspecialchars($row['ID_Treino'], ENT_QUOTES, 'UTF-8'); ?>&id_aluno=<?php echo htmlspecialchars($idAluno, ENT_QUOTES, 'UTF-8'); ?>" class="button">Ver Exercícios</a>
                         <a href="delete_training.php?id=<?php echo htmlspecialchars($row['ID_Treino'], ENT_QUOTES, 'UTF-8'); ?>&id_aluno=<?php echo htmlspecialchars($idAluno, ENT_QUOTES, 'UTF-8'); ?>" class="button" onclick="return confirm('Tem certeza que deseja excluir este treino?');">Excluir</a>

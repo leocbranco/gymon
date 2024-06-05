@@ -167,6 +167,7 @@ $resultExercicios = $conex->query($sqlExercicios);
     </script>
 </head>
 <body>
+    <?php include 'menu.php'; ?>
     <div class="container">
         <h1>Enviar Treino para <?php echo htmlspecialchars($aluno['Nome_Aluno']); ?></h1>
         <form method="POST" action="">

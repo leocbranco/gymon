@@ -28,6 +28,7 @@ $result = $conex->query($sql);
                 <th>Nome</th>
                 <th>Email</th>
                 <th>Status</th>
+                <th>CREF</th>
                 <th>Ações</th>
             </tr>
         </thead>
@@ -39,6 +40,9 @@ $result = $conex->query($sql);
                 <td><?php echo $row['Email_Personal']; ?></td>
                 <td class="status">
                     <?php echo $row['Status_Personal'] == 1 ? 'Aprovado' : ($row['Status_Personal'] == 0 ? 'Negado' : 'Em Avaliação'); ?>
+                </td>
+                <td>
+                    <a href="<?php echo $row['CREF_Personal']; ?>" target="_blank">Ver CREF</a>
                 </td>
                 <td>
                     <button class="aprovar-btn" data-id="<?php echo $row['ID_Personal']; ?>">Aprovar</button>

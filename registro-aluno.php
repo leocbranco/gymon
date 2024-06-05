@@ -11,16 +11,14 @@ if (isset($_POST['register'])) {
     $genero = $_POST['genero'];
     $data_nasc = $_POST['data_nasc'];
 
-    // Remove pontos e traços do CPF
     $CPF = preg_replace('/[^0-9]/', '', $CPF);
 
-    // Valida CPF
     if (!validaCPF($CPF)) {
         echo "<script>alert('CPF inválido. Por favor, insira um CPF válido.'); window.location.href='registro-aluno.php';</script>";
         exit();
     }
 
-    // Verifica se o email já está em uso
+
     $stmt = $conex->prepare("SELECT * FROM Aluno WHERE Email_Aluno = ?");
     $stmt->bind_param("s", $email);
     $stmt->execute();
@@ -30,7 +28,6 @@ if (isset($_POST['register'])) {
         exit();
     }
 
-    // Verifica se o CPF já está em uso
     $stmt = $conex->prepare("SELECT * FROM Aluno WHERE CPF_Aluno = ?");
     $stmt->bind_param("s", $CPF);
     $stmt->execute();
@@ -40,7 +37,6 @@ if (isset($_POST['register'])) {
         exit();
     }
 
-    // Insere novo aluno no banco de dados
     $stmt = $conex->prepare("INSERT INTO Aluno (Nome_Aluno, Email_Aluno, Senha_Aluno, CPF_Aluno, Genero_Aluno, DataNasc_Aluno) VALUES (?, ?, ?, ?, ?, ?)");
     $stmt->bind_param("ssssss", $nome, $email, $senha, $CPF, $genero, $data_nasc);
     $result = $stmt->execute();
@@ -53,8 +49,6 @@ if (isset($_POST['register'])) {
     }
 }
 ?>
-
-
 
 
 <!DOCTYPE html>

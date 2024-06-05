@@ -90,7 +90,7 @@ body {
     padding: 0px 10%;
     box-sizing: border-box; 
     gap: 8rem;
-    margin-top: 70px; /* Compensar a navegação fixa */
+    margin-top: 70px;
 }
 
 .home-texts {

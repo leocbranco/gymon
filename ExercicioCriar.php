@@ -190,7 +190,7 @@
         ?>
         <div class="form-container">
             <h2>Cadastro de Exercícios</h2>
-            <form action="" method="post" onsubmit="return check(this.form)" enctype="multipart/form-data">
+            <form action="" method="post" onsubmit="return checkForm()" enctype="multipart/form-data">
                 <div class="form-group">
                     <label for="nome">Nome:</label>
                     <input id="nome" name="Nome" type="text" title="Nome do exercício" required>
@@ -203,7 +203,7 @@
                     <label for="imagem">Imagem Selecionada:</label>
                     <img class="img-preview" id="imagemSelecionada" src="assets/imagem.png" alt="Imagem Selecionada">
                     <label class="btn-file" for="Imagem">Selecionar Imagem</label>
-                    <input type="file" id="Imagem" name="Imagem" accept="image/*" onchange="previewImage(event)">
+                    <input type="file" id="Imagem" name="Imagem" accept="image/*" onchange="previewImage(event)" required>
                 </div>
                 <div class="btn-container">
                     <input type="submit" class="btn" value="Registrar">
@@ -222,6 +222,15 @@
                 imgPreview.src = reader.result;
             }
             reader.readAsDataURL(event.target.files[0]);
+        }
+
+        function checkForm() {
+            var fileInput = document.getElementById('Imagem');
+            if (fileInput.files.length === 0) {
+                echo("É obrigatório enviar uma imagem.");
+                return false;
+            }
+            return true;
         }
     </script>
 </body>

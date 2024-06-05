@@ -13,6 +13,20 @@ if (!isset($_GET['id'])) {
 }
 
 $idAluno = $_GET['id'];
+
+$sqlAluno = "SELECT Nome_Aluno FROM Aluno WHERE ID_Aluno = ?";
+$stmtAluno = $conex->prepare($sqlAluno);
+$stmtAluno->bind_param("i", $idAluno);
+$stmtAluno->execute();
+$resultAluno = $stmtAluno->get_result();
+
+if ($resultAluno->num_rows > 0) {
+    $aluno = $resultAluno->fetch_assoc();
+    $nomeAluno = $aluno['Nome_Aluno'];
+} else {
+    $nomeAluno = "Aluno não encontrado";
+}
+
 $sql = "
     SELECT Treinos.ID_Treino, Treinos.Nome_Treino, Treinos.Data_Treino 
     FROM Treinos 
@@ -132,7 +146,7 @@ $result = $stmt->get_result();
 </head>
 <body>
     <div class="container">
-        <h1>Treinos do Aluno</h1>
+        <h1>Treinos do Aluno: <?php echo htmlspecialchars($nomeAluno, ENT_QUOTES, 'UTF-8'); ?></h1>
         <table>
             <thead>
                 <tr>

@@ -1,5 +1,12 @@
 <?php
 
+session_start();
+
+if (!isset($_SESSION['admin']) || $_SESSION['admin'] !== true) {
+    header('Location: login-personal.php');
+    exit();
+}
+
 include_once('cfg.php');
 
 $sql = "SELECT * FROM Aluno";

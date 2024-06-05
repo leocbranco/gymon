@@ -1,3 +1,12 @@
+<?php
+session_start();
+
+if (!isset($_SESSION['admin']) || $_SESSION['admin'] !== true) {
+    header('Location: login-personal.php');
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,6 +30,5 @@
         }
     </style>
     <?php require 'menu-admin.php'; ?>
-    
 </body>
 </html>

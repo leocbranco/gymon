@@ -18,6 +18,7 @@ if (isset($_POST['login']) && !empty($_POST['email']) && !empty($_POST['senha'])
         unset($_SESSION['email']);
         unset($_SESSION['senha']);
         unset($_SESSION['id_personal']);
+        unset($_SESSION['admin']);
         header('Location: login-personal.php');
     } else {
         $row = $result->fetch_assoc();
@@ -35,7 +36,6 @@ if (isset($_POST['login']) && !empty($_POST['email']) && !empty($_POST['senha'])
     }
 }
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">

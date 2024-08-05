@@ -1,2 +1,2 @@
 Projeto GymON
-Alunos: Davi Hoffmann, Pedro Freiberger, Leonardo Branco e Vicente Freiberger
+Alunos: Davi Agostini Hoffmann, Pedro Freiberger, Leonardo Branco e Vicente Freiberger

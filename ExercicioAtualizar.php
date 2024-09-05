@@ -184,7 +184,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <?php include 'menu.php'; ?>
     <div class="container">
         <div class="form-container">
-            <h2>Atualização Disciplina</h2>
+            <h2>Edição Exercicio</h2>
             <?php if ($errorMsg) { echo "<p style='color: red;'>$errorMsg</p>"; } ?>
             <form action="exercicioAtualizar.php" method="post" enctype="multipart/form-data">
                 <div class="form-group">
